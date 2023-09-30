@@ -37,9 +37,9 @@ pop = pop(:,index);
 
 % Main loop（最大評価回数を超える前繰り返す）
 while FE < maxFE
-    ssr = randperm(pop_size); %1からpop_sizeまでの数字をランダムに並べたベクトルを作成
-    parent = pop(:,ssr); %個体の座標を並べ直す
-    parentfit = fit(:,ssr); %個体の評価値を並べ直す
+    ssr = randperm(pop_size);
+    parent = pop(:,ssr);
+    parentfit = fit(:,ssr);
 end  
 
 % Helper functions (You need to fill these up)
