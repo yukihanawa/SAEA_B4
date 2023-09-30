@@ -86,3 +86,8 @@ function [newPop, newFit] = selectBestIndividuals(pop, offspring, fit, N)
     newPop = pop(idx(1:N),:);
     newFit = fit(idx(1:N));
 end
+
+function y = fitness(x1,x2)
+    y = x1 * x2;
+end
+
