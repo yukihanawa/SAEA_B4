@@ -1,6 +1,6 @@
 % Parameter settings
 seed = 1;
-dim = 2;
+dim = 10;
 psr = 0.5;%pre-selection rate
 
 rng(seed); %seed値を設定する
@@ -10,10 +10,26 @@ ub = 100 * ones(dim,1);%upper bound
 maxFE = 200*dim; % maximum function evaluations
 pop_size = 40; % number of population
 
+rsm = 0.5;
+
+% parameter
+pc = 0.7; %交叉率
+nc = 2 * round(pc * pop_size/2); %子孫の数
+gamma = 0.4; %extra range factor for crossover
+
+pm = 0.3; %突然変異率
+nm = round(pm*pop_size); %突然変異数
+mu = 0.3;
+
+sp = 0.7;%予測成功確率
+
+fhd = @rastrigin;
+fhd_noise = @rastrigin_noise;
+
 %LHS(Latin Hypercube Sampling)を使ってサンプルを生成
 arcv.x = repmat(lb', 5*dim,1) + lhsdesign(5*dim,dim, 'iterations',1000).*(repmat(ub' - lb', 5*dim, 1));
 %サンプルを評価
-arcv.y = eval_pop(fhd, arc.x')';
+arcv.y = eval_pop(fhd, arcv.x')';
 %ソート
 [arcv.y, index] = sort(arcv.y); % 昇順でソート
 arcv.x = arcv.x(index,:); % ソートされたインデックスを使用して、arcv.x(index,:)をソート
@@ -23,13 +39,6 @@ pop = arcv.x(1:pop_size,:)';% 集団
 
 FE = 5*dim; %評価回数を更新
 
-% parameter
-pc = 0.7; %交叉率
-nc = 2 * round(pc * pip_size/2); %子孫の数
-gamma = 0.4; %extra range factor for crossover
-
-pm = 0.3; %突然変異率
-nm = round(pm*pop_size); %突然変異数
 
 %評価値の良い順番に並び替え
 [fit, index] = sort(fit); 
@@ -64,22 +73,25 @@ while FE < maxFE
         offspringm(:,k) = Mutate(p, mu, ub(1), lb(1));
     end
     
-    %新たな子個体
+    %新たな子個体（交叉したものと突然変異させたものを組み合わせる）
     offspring = [offspringc offspringm];
 
     % 再評価の割合
     psm = floor(rsm * pop_size);  % 実評価関数によって評価される個体数
+    
 
     % 評価値を予測（実評価関数を使う（ノイズあり））
-    offspring_fit_assumed = eval_pop(fhd_noise, offspring);
-    fe = fe + pop_size;  % 評価回数を更新
+    offspring_fit_assumed = eval_pop_noise(fhd_noise, offspring,ub(1),lb(1));
+    
     
     % 予測値を元に並び替え
     [sorted_fit, index] = sort(offspring_fit_assumed);
 
     % 再評価する個体を選ぶ
     reevaluate_pop = offspring(:, index(1:psm));
-    reevaluate_fit = sorted_fit(1:psm);
+    %再評価
+    reevaluate_fit = eval_pop(fhd, reevaluate_pop);
+    FE = FE + psm;  % 評価回数を更新
 
     % 本当はここでアーカイブを残す（座標、評価値→学習のため）
     %今回はサロゲートを学習しないので、省略
@@ -93,7 +105,7 @@ while FE < maxFE
 
     % 次世代に残る候補を集める（親、再評価された子個体、再評価されなかった子個体）
     pop = [parent reevaluate_pop  offspring(:, index(psm+1:end))];
-    fit = [parentfit reevaluate_fit sorted_fit(index(psm+1:end))];
+    fit = [parentfit reevaluate_fit offspring_fit_assumed(index(psm+1:end))];
 
     % 候補の評価値を元に並び替え
     [fit, index] = sort(fit);
@@ -103,49 +115,89 @@ while FE < maxFE
     pop = [bestind pop(:, 1:pop_size-1)];
     fit = [bestfit fit(:, 1:pop_size-1)];
 
-    fprintf('FE: %d, Fitness: %.2e \n', fe, min(arcv.y));
+    fprintf('FE: %d, Fitness: %.2e \n', FE, min(fit));
 
 end  
 
-% Helper functions (You need to fill these up)
-function pop = initializePopulation(N)
-    % Return initial population of size N
-    pop = rand(N,2); % 2次元配列を作成
+%評価関数
+function val = rastrigin(x)
+    A = 10;
+    n = length(x);
+    val = A * n + sum(x.^2 - A * cos(2 * pi * x));
 end
 
-function fit = evaluatePopulation(pop)
-    % Evaluate the fitness of the population
-    fit = sum(pop,2); % Example: sum of elements
+%評価値関数ノイズあり
+function val = rastrigin_noise(x,ub,lb)
+    sp = 0.7;
+    random_sign = sign(rand - 0.5);
+    if random_sign == 0
+        random_sign = 1;
+    end
+    if rand > sp
+        val = random_sign * rastrigin(x) * (ub-lb)*rand;
+    else
+        val = rastrigin(x);
+    end    
+    
 end
 
-function candidate = generateCandidate()
-    % Generate a single offspring candidate
-    candidate = rand(1,1); % Example: random value
+%評価値を計算
+function fit = eval_pop(f, pop)
+    
+    [~ , n] = size(pop);
+    fit = zeros(1, n);
+    for i = 1:n
+        fit(i) = f(pop(:, i));
+    end
+
 end
 
-function model = buildSurrogateModel(pop, fit)
-    % Return the surrogate model based on the population and their fitness values
-    model = fit; % Placeholder
+%ノイズありの評価値を計算
+function fit_noise = eval_pop_noise(f, pop,ub,lb)
+    [~ ,n] = size(pop);
+    fit_noise = zeros(1, n);
+    for i = 1:n     
+        fit_noise(i) = f(pop(:,i),ub,lb);         
+    end
 end
 
-function predicted = predictFitness(model, candidate)
-    % Predict the fitness of the candidate using the surrogate model
-    predicted = sum(candidate); % Example: sum of elements
+
+% 交叉関数
+function [y1, y2]=Crossover(x1,x2,gamma,VarMax,VarMin)
+
+    alpha=unifrnd(-gamma,1+gamma,size(x1));
+    
+    y1=alpha.*x1+(1-alpha).*x2;
+    y2=alpha.*x2+(1-alpha).*x1;
+    
+    y1=max(y1,VarMin);
+    y1=min(y1,VarMax);
+    
+    y2=max(y2,VarMin);
+    y2=min(y2,VarMax);
+
 end
 
-function actual = reEvaluate(candidate)
-    % Re-evaluate the fitness of the candidate
-    actual = sum(candidate); % Example: sum of elements
-end
+% 突然変異関数
+function y=Mutate(x,mu,VarMax,VarMin)
+    
+    nVar=size(x,1);
+    nmu=ceil(mu*nVar);
+    
+   % original mutation     
+%     j=randsample(nVar,nmu)';
+%     
+%     sigma=0.1*(VarMax-VarMin);
+%     
+%     y=x;
+%     y(j)=x(j)+sigma*randn(size(j));
+%     
+%     y=max(y,VarMin);
+%     y=min(y,VarMax);
+    
+    % uniform mutation 
+    r = rand(nVar, 1) >= mu;
+    y = unifrnd(VarMin, VarMax, nVar, 1);
+    y(r) = x(r);
 
-function [newPop, newFit] = selectBestIndividuals(pop, offspring, fit, N)
-    % Select the N best individuals
-    [~, idx] = sort(fit, 'descend'); % Example: sort in descending order
-    newPop = pop(idx(1:N),:);
-    newFit = fit(idx(1:N));
 end
-
-function y = fitness(x1,x2)
-    y = x1 * x2;
-end
-
