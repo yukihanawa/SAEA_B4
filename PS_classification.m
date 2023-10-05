@@ -1,7 +1,7 @@
+function all_fitness = PS_classification(sp)
 % Parameter settings
 seed = 1;
 dim = 10;
-psr = 0.5;%pre-selection rate
 
 rng(seed); %seed値を設定する
 lb = -100 * ones(dim,1);%lower bound
@@ -10,7 +10,7 @@ ub = 100 * ones(dim,1);%upper bound
 maxFE = 200*dim; % maximum function evaluations
 pop_size = 40; % number of population
 
-rsm = 0.5;
+all_fitness = nan(1,2000);
 
 % parameter
 pc = 0.7; %交叉率
@@ -21,10 +21,7 @@ pm = 0.3; %突然変異率
 nm = round(pm*pop_size); %突然変異数
 mu = 0.3;
 
-sp = 0.7;%予測成功確率
-
 fhd = @rastrigin;
-fhd_noise = @rastrigin_noise;
 
 %LHS(Latin Hypercube Sampling)を使ってサンプルを生成
 arcv.x = repmat(lb', 5*dim,1) + lhsdesign(5*dim,dim, 'iterations',1000).*(repmat(ub' - lb', 5*dim, 1));
@@ -46,6 +43,11 @@ pop = pop(:,index);
 
 % Main loop（最大評価回数を超える前繰り返す）
 while FE < maxFE
+    fprintf('FE: %d, Fitness: %.2e \n', FE, min(fit));
+%     fprintf('%.2e\n',min(fit));
+     all_fitness(FE) = min(fit);
+     
+     
     ssr = randperm(pop_size); %1からpop_sizeまでの数字をランダムに並べたベクトルを作成
     parent = pop(:,ssr); %個体の座標を並べ直す
     parentfit = fit(:,ssr); %個体の評価値を並べ直す
@@ -73,52 +75,39 @@ while FE < maxFE
         offspringm(:,k) = Mutate(p, mu, ub(1), lb(1));
     end
     
-    %新たな子個体（交叉したものと突然変異させたものを組み合わせる）
+    %新たな子個体（交叉したものと突然変異させたものを組み合わせる）親の数と同じだけの量
     offspring = [offspringc offspringm];
 
-    % 再評価の割合
-    psm = floor(rsm * pop_size);  % 実評価関数によって評価される個体数
+    %classification for pre-selection
+    pop = parent;
+    fit = parentfit;
     
+    for i = 1:pop_size
+        reference = parentfit(i);
+        offspringfit = fhd(offspring(:,i));
+        
+        label = offspringfit < reference;%子個体の方が優れている
+                              
+        if rand > sp %間違った判断をする時
+            if label == 1
+                label = 0;
+            else
+                label = 1;
+            end
+        end
 
-    % 評価値を予測（実評価関数を使う（ノイズあり））
-    offspring_fit_assumed = eval_pop_noise(fhd_noise, offspring,ub(1),lb(1));
+        if label
+            FE = FE + 1;
+            pop(:,i) = offspring(:,i);
+            fit(i) = offspringfit;
+        end
+        
+    end
     
     
-    % 予測値を元に並び替え
-    [sorted_fit, index] = sort(offspring_fit_assumed);
-
-    % 再評価する個体を選ぶ
-    reevaluate_pop = offspring(:, index(1:psm));
-    %再評価
-    reevaluate_fit = eval_pop(fhd, reevaluate_pop);
-    FE = FE + psm;  % 評価回数を更新
-
-    % 本当はここでアーカイブを残す（座標、評価値→学習のため）
-    %今回はサロゲートを学習しないので、省略
-    
-    %最良個体を残す
-    [bestfit, index] = min(parentfit);
-    bestind = parent(:, index);
-    %最良個体を取り除く（後で付け足す）
-    parent(:, index) = [];
-    parentfit(index) = [];
-
-    % 次世代に残る候補を集める（親、再評価された子個体、再評価されなかった子個体）
-    pop = [parent reevaluate_pop  offspring(:, index(psm+1:end))];
-    fit = [parentfit reevaluate_fit offspring_fit_assumed(index(psm+1:end))];
-
-    % 候補の評価値を元に並び替え
-    [fit, index] = sort(fit);
-    pop = pop(:, index);
-
-    % 最良個体を追加している
-    pop = [bestind pop(:, 1:pop_size-1)];
-    fit = [bestfit fit(:, 1:pop_size-1)];
-
-    fprintf('FE: %d, Fitness: %.2e \n', FE, min(fit));
 
 end  
-
+end
 %評価関数
 function val = rastrigin(x)
     A = 10;
@@ -126,20 +115,6 @@ function val = rastrigin(x)
     val = A * n + sum(x.^2 - A * cos(2 * pi * x));
 end
 
-%評価値関数ノイズあり
-function val = rastrigin_noise(x,ub,lb)
-    sp = 0.7;
-    random_sign = sign(rand - 0.5);
-    if random_sign == 0
-        random_sign = 1;
-    end
-    if rand > sp
-        val = random_sign * rastrigin(x) * (ub-lb)*rand;
-    else
-        val = rastrigin(x);
-    end    
-    
-end
 
 %評価値を計算
 function fit = eval_pop(f, pop)
@@ -150,15 +125,6 @@ function fit = eval_pop(f, pop)
         fit(i) = f(pop(:, i));
     end
 
-end
-
-%ノイズありの評価値を計算
-function fit_noise = eval_pop_noise(f, pop,ub,lb)
-    [~ ,n] = size(pop);
-    fit_noise = zeros(1, n);
-    for i = 1:n     
-        fit_noise(i) = f(pop(:,i),ub,lb);         
-    end
 end
 
 
@@ -182,7 +148,7 @@ end
 function y=Mutate(x,mu,VarMax,VarMin)
     
     nVar=size(x,1);
-    nmu=ceil(mu*nVar);
+    %nmu=ceil(mu*nVar);
     
    % original mutation     
 %     j=randsample(nVar,nmu)';
