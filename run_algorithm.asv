@@ -1,43 +1,31 @@
-% 保存するための配列を初期化
-all_results = nan(6,2020+1);
-
 % 指定されたspの値のリスト
 sp_values = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
 
+% 保存するための配列を初期化
+all_results = nan(2000, length(sp_values) + 1);
+
 % ヘッダーを作成
-header = cell(1, length(sp_values));
+header = cell(1, length(sp_values) + 1);
+header{1} = 'Iteration'; % 最初の列のヘッダーを'Iteration'に変更
 for idx = 1:length(sp_values)
-    header{idx} = num2str(sp_values(idx));
-end
-all_results = [header];
-
-max_rows = 0; % 各spで得られる結果の最大行数を保持する変数
-
-% 最大行数を取得する
-for idx = 1:length(sp_values)
-    sp = sp_values(idx);
-    result = PS_classification(sp);
-    max_rows = max(max_rows, length(result));
+    header{idx + 1} = num2str(sp_values(idx)); % インデックスを1つずらしています
 end
 
-% spの各値に対してアルゴリズムを実行
+% セル配列に変換して、ヘッダーを追加
+all_results_cell = cell(size(all_results) + [1, 0]); % 追加の行を考慮
+all_results_cell(1, :) = header;
+
+% 2行目から2000行目までの最初の列に1から2000までの数字を追加
+all_results_cell(2:end, 1) = num2cell(1:2000);
+
+% 各sp値でPS_classification関数を呼び出し、結果をall_resultsに追加
 for idx = 1:length(sp_values)
     sp = sp_values(idx);
-
-    % main_algorithm関数を呼び出す
-    result = PS_classification(sp);
+    fitness_results = PS_classification(sp);
     
-    % 結果を文字列のセル配列に変換
-    result_str = arrayfun(@(x) sprintf('result_%.1f_%d', sp, round(x)), result, 'UniformOutput', false)';
-
-    % 余分な行を補足
-    while length(result_str) < max_rows
-        result_str = [result_str; {''}]; % 空の文字列で埋める
-    end
-
-    % 結果を配列に追加
-    all_results = [all_results, result_str];
+    all_results_cell(2:length(fitness_results)+1, idx+1) = num2cell(fitness_results);
 end
 
 % 結果をCSVファイルに保存
-writetable(cell2table(all_results), 'results.csv', 'WriteVariableNames', false);
+writetable(cell2table(all_results_cell), 'results.csv', 'WriteVariableNames', false);
+writematrix(all_results,'results2.csv');

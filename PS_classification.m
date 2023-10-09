@@ -104,8 +104,6 @@ while FE < maxFE
         
     end
     
-    
-
 end  
 end
 %評価関数
