@@ -23,6 +23,7 @@ mu = 0.3;
 
 fhd = @rastrigin;
 
+global_min = inf;
 
 %LHS(Latin Hypercube Sampling)を使ってサンプルを生成
 arcv.x = repmat(lb', 5*dim,1) + lhsdesign(5*dim,dim, 'iterations',1000).*(repmat(ub' - lb', 5*dim, 1));
