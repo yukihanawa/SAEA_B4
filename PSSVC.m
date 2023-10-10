@@ -1,7 +1,5 @@
-function all_fitness = PS_classification(sp)
+function all_fitness = PSSVC(func_num, dim,seed,sp)
 % Parameter settings
-seed = 1;
-dim = 10;
 
 rng(seed); %seed値を設定する
 lb = -100 * ones(dim,1);%lower bound
@@ -21,9 +19,8 @@ pm = 0.3; %突然変異率
 nm = round(pm*pop_size); %突然変異数
 mu = 0.3;
 
-fhd = @rastrigin;
+fhd = @(x)(cec15problems('eval',x,func_num));
 
-global_min = inf;
 
 %LHS(Latin Hypercube Sampling)を使ってサンプルを生成
 arcv.x = repmat(lb', 5*dim,1) + lhsdesign(5*dim,dim, 'iterations',1000).*(repmat(ub' - lb', 5*dim, 1));
@@ -107,12 +104,6 @@ while FE < maxFE
     end
     
 end  
-end
-%評価関数
-function val = rastrigin(x)
-    A = 10;
-    n = length(x);
-    val = A * n + sum(x.^2 - A * cos(2 * pi * x));
 end
 
 
