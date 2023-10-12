@@ -33,7 +33,7 @@ fprintf('FE: %d, Fitness: %.2e \n', fe, min(fit))
 
 % main loop
 while fe < maxfe 
-    
+    fprintf('FE: %d, Fitness: %.2e \n', fe, min(fit))
     ssr = randperm(pop_size);
     parent = pop(:, ssr);
     parentfit = fit(:, ssr);
@@ -90,7 +90,7 @@ while fe < maxfe
     fit = fit(:, 1:pop_size);
 
     
-    fprintf('FE: %d, Fitness: %.2e \n', fe, min(fit))
+    
 
 end
 end
