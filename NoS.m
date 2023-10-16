@@ -6,7 +6,7 @@ lb = -100 * ones(dim, 1);
 ub = 100 * ones(dim, 1);
 fhd = @(x)(cec15problems('eval',x,func_num));
 
-maxfe = 200 *dim;
+maxFE = 200 *dim;
 pop_size =40;
 
 % LHS database initilization
@@ -30,12 +30,21 @@ nm=round(pm*pop_size);           % number of mutants
 mu=0.1;                                  % mutation rate
 
 % Initialize global_min_fit_history and global_min_fit
-global_min = [];
+global_min = nan(maxFE,1);
 global_min_fit = Inf;
 
 % main loop
-while fe < maxfe 
+while fe < maxFE 
     fprintf('FE: %d, Fitness: %.2e \n', fe, min(fit))
+    % Update the global minimum fitness value if necessary
+    current_min_fit = min(fit);
+    if current_min_fit < global_min_fit
+        global_min_fit = current_min_fit;
+    end
+    
+    % Record the current global minimum fitness value
+    global_min(fe,1) = global_min_fit;
+    
     ssr = randperm(pop_size);
     parent = pop(:, ssr);
     parentfit = fit(:, ssr);
@@ -91,14 +100,7 @@ while fe < maxfe
     pop = pop(:, 1:pop_size);
     fit = fit(:, 1:pop_size);
     
-    % Update the global minimum fitness value if necessary
-    current_min_fit = min(fit);
-    if current_min_fit < global_min_fit
-        global_min_fit = current_min_fit;
-    end
     
-    % Record the current global minimum fitness value
-    global_min = [global_min; global_min_fit];
 
     
     

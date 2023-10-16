@@ -1,4 +1,4 @@
-function arcv = NoS(func_num, dim, seed)
+function [arcv, global_min] = NoS(func_num, dim, seed)
 
 rng(seed);
 
@@ -6,7 +6,7 @@ lb = -100 * ones(dim, 1);
 ub = 100 * ones(dim, 1);
 fhd = @(x)(cec15problems('eval',x,func_num));
 
-maxfe = 200 *dim;
+maxFE = 200 *dim;
 pop_size =40;
 
 % LHS database initilization
@@ -29,10 +29,12 @@ pm=0.3;                                 % mutation percentage
 nm=round(pm*pop_size);           % number of mutants
 mu=0.1;                                  % mutation rate
 
-g_min = 10^5;
+% Initialize global_min_fit_history and global_min_fit
+global_min = nan(1,maxFE)';
+global_min_fit = Inf;
 
 % main loop
-while fe < maxfe 
+while fe < maxFE 
     fprintf('FE: %d, Fitness: %.2e \n', fe, min(fit))
     ssr = randperm(pop_size);
     parent = pop(:, ssr);
@@ -88,6 +90,15 @@ while fe < maxfe
     % Truncation
     pop = pop(:, 1:pop_size);
     fit = fit(:, 1:pop_size);
+    
+    % Update the global minimum fitness value if necessary
+    current_min_fit = min(fit);
+    if current_min_fit < global_min_fit
+        global_min_fit = current_min_fit;
+    end
+    
+    % Record the current global minimum fitness value
+    global_min(fe) = global_min_fit;
 
     
     

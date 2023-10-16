@@ -1,9 +1,10 @@
-function all_fitness = PSSVC(func_num, dim,seed,sp)
+function [all_fitness, global_min] = PSSVC(func_num, dim,seed,sp)
 % Parameter settings
 
 rng(seed); %seed値を設定する
 lb = -100 * ones(dim,1);%lower bound
 ub = 100 * ones(dim,1);%upper bound
+fhd = @(x)(cec15problems('eval',x,func_num));
 
 maxFE = 200*dim; % maximum function evaluations
 pop_size = 40; % number of population
@@ -19,7 +20,11 @@ pm = 0.3; %突然変異率
 nm = round(pm*pop_size); %突然変異数
 mu = 0.3;
 
-fhd = @(x)(cec15problems('eval',x,func_num));
+% Initialize global_min_fit_history and global_min_fit
+global_min = nan(maxFE,1);
+global_min_fit = Inf;
+
+
 
 
 %LHS(Latin Hypercube Sampling)を使ってサンプルを生成
@@ -43,6 +48,14 @@ pop = pop(:,index);
 % Main loop（最大評価回数を超える前繰り返す）
 while FE < maxFE
     fprintf('FE: %d, Fitness: %.2e \n', FE, min(fit));
+    % Update the global minimum fitness value if necessary
+    current_min_fit = min(fit);
+    if current_min_fit < global_min_fit
+        global_min_fit = current_min_fit;
+    end
+    
+    % Record the current global minimum fitness value
+    global_min(FE,1) = global_min_fit;
 %     fprintf('%.2e\n',min(fit));
      all_fitness(FE) = min(fit);
      
@@ -102,6 +115,7 @@ while FE < maxFE
         end
         
     end
+     
     
 end  
 end
