@@ -1,4 +1,4 @@
-function arcv = NoS(func_num, dim, seed)
+function [arcv, global_min] = NoS(func_num, dim, seed)
 
 rng(seed);
 
@@ -13,10 +13,11 @@ pop_size =40;
 arcv.x = repmat(lb', 5*dim, 1) + lhsdesign(5*dim, dim, 'iterations', 1000) .* (repmat(ub' - lb', 5*dim, 1));
 arcv.y = eval_pop(fhd, arcv.x')';
 
-[arcv.y, index] = sort(arcv.y);
-arcv.x = arcv.x(index, :);
-fit = arcv.y(1:pop_size)';
-pop = arcv.x(1:pop_size, :)';
+[arcv.y, index] = sort(arcv.y);%昇順でソート
+arcv.x = arcv.x(index, :);%ソートされたインデックスを使用して、arcv.x(index,:)をソート
+%初期集団の選択
+fit = arcv.y(1:pop_size)';%評価値（上位pop_size分だけ）
+pop = arcv.x(1:pop_size, :)';%集団
 fe = 5*dim;
 
 % hyperparameter for GA
@@ -28,8 +29,9 @@ pm=0.3;                                 % mutation percentage
 nm=round(pm*pop_size);           % number of mutants
 mu=0.1;                                  % mutation rate
 
-
-fprintf('FE: %d, Fitness: %.2e \n', fe, min(fit))
+% Initialize global_min_fit_history and global_min_fit
+global_min = [];
+global_min_fit = Inf;
 
 % main loop
 while fe < maxfe 
@@ -73,7 +75,7 @@ while fe < maxfe
     
     % --------------No Surrogate---------------
     offspringfit = eval_pop(fhd, offspring);        
-    fe = fe + size(offspring, 2);
+    fe = fe + size(offspring, 2);%size(,2)は2番目の次元の長さを返す
     arcv.x = [arcv.x; offspring'];
     arcv.y = [arcv.y; offspringfit'];
     
@@ -88,6 +90,15 @@ while fe < maxfe
     % Truncation
     pop = pop(:, 1:pop_size);
     fit = fit(:, 1:pop_size);
+    
+    % Update the global minimum fitness value if necessary
+    current_min_fit = min(fit);
+    if current_min_fit < global_min_fit
+        global_min_fit = current_min_fit;
+    end
+    
+    % Record the current global minimum fitness value
+    global_min = [global_min; global_min_fit];
 
     
     
