@@ -99,11 +99,6 @@ while fe < maxFE
     % Truncation
     pop = pop(:, 1:pop_size);
     fit = fit(:, 1:pop_size);
-    
-    
-
-    
-    
 
 end
 end
