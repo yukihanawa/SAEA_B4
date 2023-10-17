@@ -6,7 +6,7 @@ lb = -100 * ones(dim, 1);
 ub = 100 * ones(dim, 1);
 fhd = @(x)(cec15problems('eval',x,func_num));
 
-maxFE = 200 *dim;
+maxFE = 2000;
 pop_size =40;
 
 % LHS database initilization

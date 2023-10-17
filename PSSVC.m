@@ -6,7 +6,7 @@ lb = -100 * ones(dim,1);%lower bound
 ub = 100 * ones(dim,1);%upper bound
 fhd = @(x)(cec15problems('eval',x,func_num));
 
-maxFE = 200*dim; % maximum function evaluations
+maxFE = 2000; % maximum function evaluations
 pop_size = 40; % number of population
 
 all_fitness = nan(1,2000);
