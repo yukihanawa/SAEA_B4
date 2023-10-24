@@ -1,4 +1,4 @@
-function arcv = IBRBF( func_num, dim, seed, knn, rsm)
+function [arcv, global_min] = IBRBF( func_num, dim, seed, sp)
 % Parameter settings
 
 
@@ -22,7 +22,9 @@ pm = 0.3; %突然変異率
 nm = round(pm*pop_size); %突然変異数
 mu = 0.3;
 
-sp = 0.7;%予測成功確率
+% Initialize global_min_fit_history and global_min_fit
+global_min = nan(maxFE,1);
+global_min_fit = Inf;
 
 fhd = @(x)(cec15problems('eval',x,func_num));
 
@@ -46,6 +48,15 @@ pop = pop(:,index);
 
 % Main loop（最大評価回数を超える前繰り返す）
 while FE < maxFE
+    
+    % Update the global minimum fitness value if necessary
+    current_min_fit = min(fit);
+    if current_min_fit < global_min_fit
+        global_min_fit = current_min_fit;
+    end
+    
+    % Record the current global minimum fitness value
+    global_min(fe,1) = global_min_fit;
     ssr = randperm(pop_size); %1からpop_sizeまでの数字をランダムに並べたベクトルを作成
     parent = pop(:,ssr); %個体の座標を並べ直す
     parentfit = fit(:,ssr); %個体の評価値を並べ直す
