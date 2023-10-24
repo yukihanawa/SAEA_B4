@@ -91,7 +91,7 @@ while FE < maxFE
     psm = floor(rsm * pop_size);  % 実評価関数によって評価される個体数
     
 
-    % 評価値を予測（実評価関数を使う（ノイズあり））
+    % 評価値を予測（実評価関数を使う）
     offspring_fit_assumed = eval_pop(fhd, offspring);
     
     
@@ -114,17 +114,39 @@ while FE < maxFE
     parent(:, index) = [];
     parentfit(index) = [];
 
-    % 次世代に残る候補を集める（親、再評価された子個体、再評価されなかった子個体）
+       % 次世代に残る候補を集める（親、再評価された子個体、再評価されなかった子個体）
     pop = [parent reevaluate_pop  offspring(:, index(psm+1:end))];
     fit = [parentfit reevaluate_fit offspring_fit_assumed(index(psm+1:end))];
 
     % 候補の評価値を元に並び替え
     [fit, index] = sort(fit);
     pop = pop(:, index);
-
+    
+    % 精度に基づいて個体を選ぶ
+    n_select = round(sp * pop_size);  % 精度に基づいて選ぶ個体数
+    n_random = pop_size - n_select;   % ランダムに選ぶ個体数
+    
+    % 精度に基づいて選ばれた個体とランダムに選ばれた個体
+    selected_pop = pop(:, 1:n_select);
+    random_index = randperm(size(pop, 2), n_random);
+    random_pop = pop(:, random_index);
+    
+    % 精度に基づいて選ばれた評価値とランダムに選ばれた評価値
+    selected_fit = fit(1:n_select);
+    random_fit = fit(random_index);
+    
+    % 次世代の個体と評価値
+    pop = [selected_pop, random_pop];
+    fit = [selected_fit, random_fit];
+    
     % 最良個体を追加している
+    [bestfit, index] = min(fit);
+    bestind = pop(:, index);
+    pop(:, index) = [];
+    fit(index) = [];
     pop = [bestind pop(:, 1:pop_size-1)];
-    fit = [bestfit fit(:, 1:pop_size-1)];
+    fit = [bestfit fit(1:pop_size-1)];
+
 
     %fprintf('FE: %d, Fitness: %.2e \n', FE, min(fit));
     fprintf('%.2e\n',min(fit));
