@@ -39,7 +39,7 @@ arcv.x = arcv.x(index,:); % ソートされたインデックスを使用して�
 fit = arcv.y(1:pop_size)';% 評価値
 pop = arcv.x(1:pop_size,:)';% 集団
 
-FE = 5*dim; %評価回数を更新
+fe = 5*dim; %評価回数を更新
 
 
 %評価値の良い順番に並び替え
@@ -47,7 +47,7 @@ FE = 5*dim; %評価回数を更新
 pop = pop(:,index);
 
 % Main loop（最大評価回数を超える前繰り返す）
-while FE < maxFE
+while fe < maxFE
     
     % Update the global minimum fitness value if necessary
     current_min_fit = min(fit);
@@ -102,7 +102,7 @@ while FE < maxFE
     reevaluate_pop = offspring(:, index(1:psm));
     %再評価
     reevaluate_fit = eval_pop(fhd, reevaluate_pop);
-    FE = FE + psm;  % 評価回数を更新
+    fe = fe + psm;  % 評価回数を更新
 
     % 本当はここでアーカイブを残す（座標、評価値→学習のため）
     %今回はサロゲートを学習しないので、省略
