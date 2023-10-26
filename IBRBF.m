@@ -139,7 +139,7 @@ while fe < maxFE
     remaining_fit(random_index) = [];
     
     % 挿入位置をランダムに選択
-    insert_positions = sort(randperm(current_pop_size - n_random, n_random));
+    insert_positions = sort(randperm(current_pop_size, n_random));
     
     % 挿入処理
     merged_pop = zeros(size(pop, 1), current_pop_size);
