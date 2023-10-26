@@ -122,22 +122,47 @@ while fe < maxFE
     [fit, index] = sort(fit);
     pop = pop(:, index);
     
-    % 精度に基づいて個体を選ぶ
-    n_select = round(sp * pop_size);  % 精度に基づいて選ぶ個体数
-    n_random = pop_size - n_select;   % ランダムに選ぶ個体数
-    
-    % 精度に基づいて選ばれた個体とランダムに選ばれた個体
-    selected_pop = pop(:, 1:n_select);
-    random_index = randperm(size(pop, 2), n_random);
+    % popとfitの現在のサイズを取得
+    current_pop_size = size(pop, 2);
+
+    % spに基づいてランダムに選ぶ個体数を計算
+    n_random = round((1 - sp) * current_pop_size);
+
+    % ランダムに個体と評価値を選出して取り除く
+    random_index = randperm(current_pop_size, n_random);
     random_pop = pop(:, random_index);
-    
-    % 精度に基づいて選ばれた評価値とランダムに選ばれた評価値
-    selected_fit = fit(1:n_select);
     random_fit = fit(random_index);
     
-    % 次世代の個体と評価値
-    pop = [selected_pop, random_pop];
-    fit = [selected_fit, random_fit];
+    remaining_pop = pop;
+    remaining_fit = fit;
+    remaining_pop(:, random_index) = [];
+    remaining_fit(random_index) = [];
+    
+    % 挿入位置をランダムに選択
+    insert_positions = sort(randperm(current_pop_size - n_random, n_random));
+    
+    % 挿入処理
+    merged_pop = zeros(size(pop, 1), current_pop_size);
+    merged_fit = zeros(1, current_pop_size);
+    
+    rem_idx = 1;
+    rand_idx = 1;
+    for i = 1:current_pop_size
+        if ismember(i, insert_positions)
+            merged_pop(:, i) = random_pop(:, rand_idx);
+            merged_fit(i) = random_fit(rand_idx);
+            rand_idx = rand_idx + 1;
+        else
+            merged_pop(:, i) = remaining_pop(:, rem_idx);
+            merged_fit(i) = remaining_fit(rem_idx);
+            rem_idx = rem_idx + 1;
+        end
+    end
+    
+    % 次世代の個体と評価値を更新
+    pop = merged_pop;
+    fit = merged_fit;
+
     
     % 最良個体を追加している
     [bestfit, index] = min(fit);

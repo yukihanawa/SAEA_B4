@@ -1,6 +1,7 @@
-% 指定されたspの値のリスト
-sp_values = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
+a = [1,2,3,4,5];
 
-length(sp_values)
+remaining = a;
+remaining(:,3) = [];
 
-sp_values(1)
+remaining
+size(remaining)
