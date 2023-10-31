@@ -50,7 +50,7 @@ pop = pop(:,index);
 while fe < maxFE
     
     % Update the global minimum fitness value if necessary
-    current_min_fit = min(fit);
+    current_min_fit = min(arcv.y);
     if current_min_fit < global_min_fit
         global_min_fit = current_min_fit;
     end
@@ -105,7 +105,8 @@ while fe < maxFE
     fe = fe + psm;  % 評価回数を更新
 
     % 本当はここでアーカイブを残す（座標、評価値→学習のため）
-    arcv.x = [
+    arcv.x = [arcv.x;reevaluate_pop'];
+    arcv.y = [arcv.y;reevaluate_fit'];
     %今回はサロゲートを学習しないので、省略
     
     %最良個体を残す
