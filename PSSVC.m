@@ -110,8 +110,11 @@ while FE < maxFE
 
         if label
             FE = FE + 1;
-            pop(:,i) = offspring(:,i);
-            fit(i) = offspringfit;
+            if offspringfit < reference
+                pop(:,i) = offspring(:,i);
+                fit(i) = offspringfit;
+            end
+            
         end
         
     end
