@@ -5,7 +5,7 @@ num_runs = 20; % runの数
 sp_value = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
 
 % 対象となるファイル名のプレフィックスを配列に格納
-file_prefixes = {'ibrbf'};
+file_prefixes = {'pssvc'};
 % nosresult用
 
 % prefix = 'nosresult';
