@@ -17,20 +17,21 @@ for run = 1:1:20
     % end
     % fprintf('\n\n\n')
     % 
-    seed = run*100 + 2019;
-    fprintf('PSSVC is starting....')
-    for func = [1 2 4 8 13 15]
-        for sp = [0.5 0.6 0.7 0.8 0.9 1.0]
-            fprintf('func: %d', func);    
-            [evolve, min_hist] = PSSVC( func, dim, seed, sp);
-            filename = sprintf('pssvc/pssvc_run%d_f%d_d%d_sp%.2f.mat', run, func, dim,sp);
-            save(filename, 'evolve')
-            filename = sprintf('pssvc_csv/pssvc_run%d_f%d_d%d_sp%.2f.csv',run,func,dim,sp);
-            filled_data = fillmissing(min_hist(1:end),'previous');
-            csvwrite(filename, filled_data)
-        end
-    end
-    fprintf('\n\n\n')
+%     seed = run*100 + 2019;
+%     fprintf('PSSVC is starting....')
+%     for func = [1 2 4 8 13 15]
+%         for sp = [0.5 0.6 0.7 0.8 0.9 1.0]
+%             fprintf('func: %d', func);    
+%             [evolve, min_hist] = PSSVC( func, dim, seed, sp);
+%             filename = sprintf('pssvc/pssvc_run%d_f%d_d%d_sp%.2f.mat', run, func, dim,sp);
+%             save(filename, 'evolve')
+%             filename = sprintf('pssvc_csv/pssvc_run%d_f%d_d%d_sp%.2f.csv',run,func,dim,sp);
+%             filled_data = fillmissing(min_hist(1:end),'previous');
+%             csvwrite(filename, filled_data)
+%         end
+%     end
+%     fprintf('\n\n\n')
+
     % seed = run * 100 + 2019;
     % fprintf('IBRBF is starting....')
     % for func = [1 2 4 8 13 15]
@@ -45,4 +46,16 @@ for run = 1:1:20
     %     end
     % end
     % fprintf('\n\n\n')
+    seed = run*100 + 2019;
+    fprintf('NoS_pssvc is starting....')
+    for func = [1 2 4 8 13 15]
+        fprintf('func: %d', func);
+        [evolve,min_hist] = NoS_PSSVC(func, dim, seed);
+        filename = sprintf('nos_pssvc/nos_pssvc_run%d_f%d_d%d.mat',run, func, dim);
+        save(filename, 'evolve')
+        filename = sprintf('nos_pssvc_csv/nos_pssvc_run%d_f%d_d%d.csv',run,func,dim);
+        filled_data = fillmissing(min_hist(1:end),'previous');        
+        csvwrite(filename, filled_data)
+    end
+    fprintf('\n\n\n')
 end

@@ -1,6 +1,6 @@
 % 初期設定
 f_value = [1,2,4,8,13,15]; % fの値
-d_value = 10; % dの値は10
+d_value = 30; % dの値は10
 sp_values = 0.5:0.1:1.0; % spの値は0.5から1.0まで0.1刻み
 run = 20;
 % 対象となるファイル名のプレフィックスを配列に格納
@@ -43,7 +43,7 @@ for p = 1:length(file_prefixes)
         end
 
         % 特定のファイルから11行目のデータを取得して最後の列に追加
-        nosresult_filename = sprintf('combine_results/aggregated_nosresult_f%d_d%d.csv', f_v, d_value);
+        nosresult_filename = sprintf('combine_results/aggregated_nos_pssvc_f%d_d%d.csv', f_v, d_value);
         if exist(nosresult_filename, 'file')
             nosresult_data = csvread(nosresult_filename);
             col_11_data_nosresult = nosresult_data(:,run + 1);
@@ -53,7 +53,7 @@ for p = 1:length(file_prefixes)
         end
 
         % 新しいCSVファイルにデータを書き出す
-        new_filename = sprintf('collected/collected_data_%s_f%d_d%d.csv', prefix, f_v, d_value);
+        new_filename = sprintf('collected/new_collected_data_%s_f%d_d%d.csv', prefix, f_v, d_value);
         csvwrite(new_filename, collected_data);
     end
 end

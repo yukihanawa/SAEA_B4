@@ -6,12 +6,12 @@ import os
 base_dir = ''
 
 # Generate file names based on the pattern
-surrogate_models = ['pssvc', 'ibrbf']
+surrogate_models = ['pssvc']
 functions = ['f1', 'f2', 'f4', 'f8', 'f13', 'f15']
 dimensions = ['d10', 'd30']
 
 # Creating a list of file paths based on the naming pattern
-file_paths = [os.path.join(base_dir, f'collected_data_{model}_{func}_{dim}.csv')
+file_paths = [os.path.join(base_dir, f'new_collected_data_{model}_{func}_{dim}.csv')
               for model in surrogate_models
               for func in functions
               for dim in dimensions]
@@ -27,17 +27,22 @@ log_scale_files = [
      'collected_data_pssvc_f1_d10.csv', 'collected_data_pssvc_f2_d10.csv', 'collected_data_pssvc_f8_d10.csv',
     'collected_data_pssvc_f1_d30.csv', 'collected_data_pssvc_f8_d30.csv',
     'collected_data_ibrbf_f1_d10.csv', 'collected_data_ibrbf_f2_d10.csv', 'collected_data_ibrbf_f8_d10.csv',
-    'collected_data_ibrbf_f1_d30.csv', 'collected_data_ibrbf_f8_d30.csv'
+    'collected_data_ibrbf_f1_d30.csv', 'collected_data_ibrbf_f8_d30.csv',
+    'new_collected_data_pssvc_f1_d10.csv', 'new_collected_data_pssvc_f2_d10.csv', 'new_collected_data_pssvc_f8_d10.csv',
+    'new_collected_data_pssvc_f1_d30.csv', 'new_collected_data_pssvc_f8_d30.csv',
 ]
 inset_files = [
     'collected_data_pssvc_f2_d10.csv', 'collected_data_pssvc_f8_d10.csv', 'collected_data_pssvc_f13_d10.csv',
      'collected_data_pssvc_f13_d30.csv',
     'collected_data_ibrbf_f2_d10.csv', 'collected_data_ibrbf_f8_d10.csv', 'collected_data_ibrbf_f13_d10.csv',
-    'collected_data_ibrbf_f2_d30.csv', 'collected_data_ibrbf_f13_d30.csv'
+    'collected_data_ibrbf_f2_d30.csv', 'collected_data_ibrbf_f13_d30.csv',
+    'new_collected_data_pssvc_f2_d10.csv', 'new_collected_data_pssvc_f8_d10.csv', 'new_collected_data_pssvc_f13_d10.csv',
+     'new_collected_data_pssvc_f13_d30.csv',
 ]
 
 inset_ymin_files = {
     'collected_data_pssvc_f2_d10.csv': 1e4,
+    'new_collected_data_pssvc_f2_d10.csv': 1e4,
     # 他のファイルに対する最小値指定も同様に追加可能
 }
 
