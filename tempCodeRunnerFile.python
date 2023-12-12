@@ -1,0 +1,28 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+# 仮のデータセットを生成
+x = np.linspace(-10, 10, 100)
+y = np.sin(x) + np.random.normal(0, 0.1, 100)  # サンプルデータにノイズを加える
+y_true = np.sin(x)  # 真の関数
+
+# サンプルポイントをプロット
+plt.scatter(x, y, label='サンプルポイント')
+
+# 真の関数をプロット
+plt.plot(x, y_true, label='真の関数', color='green')
+
+# サロゲートモデルの近似曲線をプロット
+# この例では、真の関数に基づいていますが、実際にはサロゲートモデルから生成する必要があります。
+plt.plot(x, y_true, label='サロゲートモデル', linestyle='--', color='blue')
+
+# グラフのタイトルと軸ラベルを設定
+plt.title('サロゲートモデルによる最適化の例')
+plt.xlabel('パラメータの値')
+plt.ylabel('評価値')
+
+# 凡例を表示
+plt.legend()
+
+# グラフを表示
+plt.show()

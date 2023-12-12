@@ -6,12 +6,12 @@ import os
 base_dir = ''
 
 # Generate file names based on the pattern
-surrogate_models = ['pssvc']
+surrogate_models = ['ibrbf']
 functions = ['f1', 'f2', 'f4', 'f8', 'f13', 'f15']
 dimensions = ['d10', 'd30']
 
 # Creating a list of file paths based on the naming pattern
-file_paths = [os.path.join(base_dir, f'new_collected_data_{model}_{func}_{dim}.csv')
+file_paths = [os.path.join(base_dir, f'collected_data_{model}_{func}_{dim}.csv')
               for model in surrogate_models
               for func in functions
               for dim in dimensions]
@@ -64,16 +64,17 @@ def plot_and_save_graph(file_path, use_log_scale, add_inset):
                 marker=markers[i % len(markers)], markevery=200, color=colors[i % len(colors)])
 
     ax.set_xticks(range(0, data.iloc[:, 0].max() + 1, 200))
-    ax.set_xlabel('Evaluation Count',fontsize=16)
-    ax.set_ylabel('Difference from Minimum value' + (' (log scale)' if use_log_scale else ''), fontsize=16)
+    ax.set_xlabel('Evaluation Count',fontsize=20)
+    ax.set_ylabel('Difference from Minimum value' + (' (log scale)' if use_log_scale else ''), fontsize=20)
     if use_log_scale:
         ax.set_yscale('log')
-    ax.legend(fontsize = 16)
+    ax.legend(fontsize = 20)
 
     # Adding an inset for the last 500 evaluations if specified
     if add_inset:
         # Create an inset axes
-        inset_ax = fig.add_axes([0.45, 0.55, 0.3, 0.3])
+        # inset_ax = fig.add_axes([0.45, 0.55, 0.3, 0.3])
+        inset_ax = fig.add_axes([0.4, 0.55, 0.3, 0.3])
         for i, column in enumerate(data.columns[1:]):
             inset_ax.plot(data.iloc[-500:, 0], data.iloc[-500:, i+1], 
                           linestyle=line_styles[i % len(line_styles)],
@@ -87,7 +88,7 @@ def plot_and_save_graph(file_path, use_log_scale, add_inset):
             inset_ax.set_ylim(bottom=ymin)
 
     # Save the plot to the specified folder
-    save_path = os.path.join(base_dir, os.path.basename(file_path).replace('.csv', '.pdf').replace('collected_data_', ''))
+    save_path = os.path.join(base_dir, os.path.basename(file_path).replace('.csv', '.pdf').replace('collected_data_', 'b_'))
     plt.savefig(save_path, bbox_inches='tight')
     plt.close()  # Close the figure after saving
 

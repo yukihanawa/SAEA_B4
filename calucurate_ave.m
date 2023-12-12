@@ -5,10 +5,10 @@ num_runs = 20; % runの数
 sp_value = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
 
 % 対象となるファイル名のプレフィックスを配列に格納
-file_prefixes = {'pssvc'};
+file_prefixes = {'ibrbf'};
 % nosresult用
 
-prefix = 'nos_pssvc';
+prefix = 'nosresult';
 for f = 1:length(f_value)
     f_v = f_value(f);
     % 2000x10の行列を初期化（各CSVファイルのデータがここに格納されます）
