@@ -115,8 +115,8 @@ while fe < maxFE
 %     parentfit(index) = [];
 
        % 次世代に残る候補を集める（親、再評価された子個体、再評価されなかった子個体）
-    pop = [parent offspring(:, index(psm+1:end))];
-    fit = [parentfit offspring_fit_assumed(index(psm+1:end))];
+    pop = [parent offspring];
+    fit = [parentfit offspring_fit_assumed];
 
     % 候補の評価値を元に並び替え
     [fit, index] = sort(fit);
@@ -158,6 +158,7 @@ while fe < maxFE
     reevaluate_pop = offspring(:, 1);
     %再評価
     reevaluate_fit = eval_pop(fhd, reevaluate_pop);
+    FE = FE + 1;
     % ここでアーカイブを残す（座標、評価値→学習のため）
     arcv.x = [arcv.x;reevaluate_pop'];
     arcv.y = [arcv.y;reevaluate_fit'];

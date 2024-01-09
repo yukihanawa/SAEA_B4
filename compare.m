@@ -45,10 +45,6 @@ for run = 1:1:20
             filename = sprintf('ibrbf_csv/new_ibrbf_changed_run%d_f%d_d%d_sp%.2f.csv',run,func,dim,sp);
             filled_data = fillmissing(min_hist(1:2000),'previous');
             csvwrite(filename, filled_data)
-%             
-            %実際の精度の算出結果の配列
-%             filename1 = sprintf('ibrbf_csv/correct_rate/run%d_f%d_d%d_sp%.2f.csv',run,func,dim,sp);
-%             csvwrite(filename1, correct_rate);
         end
     end
     fprintf('\n\n\n')
@@ -65,4 +61,22 @@ for run = 1:1:20
 %         csvwrite(filename, filled_data)
 %     end
 %     fprintf('\n\n\n')
+
+    %generation_based
+    seed = run * 100 + 2019;
+    fprintf('generation_based is starting....run:%d\n',run);
+    for func = [1 2 4 8 13 15]
+        for sp = [0.5 0.6 0.7 0.8 0.9 1.0]
+            fprintf('func: %d sp: %.2f\n', func, sp);    
+            [evolve, min_hist, correct_rate] = generation_base( func, dim, seed, sp);
+
+            %修正バージョン
+            filename = sprintf('generation_csv/generation_run%d_f%d_d%d_sp%.2f.csv',run,func,dim,sp);
+            filled_data = fillmissing(min_hist(1:2000),'previous');
+            csvwrite(filename, filled_data)
+        end
+    end
+    fprintf('\n\n\n')
+
+
 end
