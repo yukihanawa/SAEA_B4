@@ -32,22 +32,24 @@ for run = 1:1:20
 %     end
 %     fprintf('\n\n\n')
 
-    seed = run * 100 + 2019;
-    fprintf('IBRBF is starting....')
-    for func = [1 2 4 8 13 15]
-        for sp = [0.5 0.6 0.7 0.8 0.9 1.0]
-            fprintf('func: %d\n', func);    
-            [evolve, min_hist, correct_rate] = new_IBRBF( func, dim, seed, sp);
+%IBRBF
+    % seed = run * 100 + 2019;
+    % fprintf('IBRBF is starting....')
+    % for func = [1 2 4 8 13 15]
+    %     for sp = [0.5 0.6 0.7 0.8 0.9 1.0]
+    %         fprintf('func: %d\n', func);    
+    %         [evolve, min_hist, correct_rate] = new_IBRBF( func, dim, seed, sp);
+            %旧バージョン
 %             filename = sprintf('IBRBF/ibrbf_run%d_f%d_d%d_sp%.2f.mat', run, func, dim,sp);
 %             save(filename, 'evolve')
 %             filename = sprintf('ibrbf_csv/ibrbf_run%d_f%d_d%d_sp%.2f.csv',run,func,dim,sp);
             %修正バージョン
-            filename = sprintf('ibrbf_csv/new_ibrbf_changed_run%d_f%d_d%d_sp%.2f.csv',run,func,dim,sp);
-            filled_data = fillmissing(min_hist(1:2000),'previous');
-            csvwrite(filename, filled_data)
-        end
-    end
-    fprintf('\n\n\n')
+    %         filename = sprintf('ibrbf_csv/new_ibrbf_changed_run%d_f%d_d%d_sp%.2f.csv',run,func,dim,sp);
+    %         filled_data = fillmissing(min_hist(1:2000),'previous');
+    %         csvwrite(filename, filled_data)
+    %     end
+    % end
+    % fprintf('\n\n\n')
     
 %     seed = run*100 + 2019;
 %     fprintf('NoS_pssvc is starting....')

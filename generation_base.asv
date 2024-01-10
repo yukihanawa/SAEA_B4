@@ -115,8 +115,8 @@ while fe < maxFE
 %     parentfit(index) = [];
 
        % 次世代に残る候補を集める（親、再評価された子個体、再評価されなかった子個体）
-    pop = [parent offspring(:, index(psm+1:end))];
-    fit = [parentfit offspring_fit_assumed(index(psm+1:end))];
+    pop = [parent offspring];
+    fit = [parentfit offspring_fit_assumed];
 
     % 候補の評価値を元に並び替え
     [fit, index] = sort(fit);
@@ -135,9 +135,10 @@ while fe < maxFE
     random_pop = pop(:, random_index);
     random_fit = fit(random_index);
     
+    
     %下位の評価値のものから次世代に使うものを取り出す
-    n_remain_bad = pop_size - n_random;
-    random_index_bad = randperm(pop_size+1:current_pop_size, n_remain_bad);
+    n_remain_bad = pop_size - n_remain;
+    random_index_bad = randperm(pop_size+1 : current_pop_size, n_remain_bad);
     random_pop_bad = pop(:, random_index_bad);
     random_fit_bad = fit(random_index_bad);
     
