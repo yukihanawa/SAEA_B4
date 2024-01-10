@@ -4,8 +4,6 @@ function [arcv, global_min, correct_rate] = new_IBRBF_changed( func_num, dim, se
 %精度の推移を記録する配列
 correct_rate = [];
 
-psr = 0.5;%pre-selection rate
-
 rng(seed); %seed値を設定する
 lb = -100 * ones(dim,1);%lower bound
 ub = 100 * ones(dim,1);%upper bound
@@ -13,7 +11,7 @@ ub = 100 * ones(dim,1);%upper bound
 maxFE = 200*dim; % maximum function evaluations
 pop_size = 40; % number of population
 
-rsm = 0.5;
+rsm = 0.5;%再評価する個体の割合
 
 % parameter
 pc = 0.7; %交叉率
@@ -59,6 +57,8 @@ while fe < maxFE
     
     % Record the current global minimum fitness value
     global_min(fe,1) = global_min_fit;
+    
+    %親集団をランダムに並び替え
     ssr = randperm(pop_size); %1からpop_sizeまでの数字をランダムに並べたベクトルを作成
     parent = pop(:,ssr); %個体の座標を並べ直す
     parentfit = fit(:,ssr); %個体の評価値を並べ直す
@@ -98,7 +98,7 @@ while fe < maxFE
     
     
     % 予測値を元に並び替え
-    [sorted_fit, index] = sort(offspring_fit_assumed);
+    [~, index] = sort(offspring_fit_assumed);
 
     % 再評価する個体を選ぶ（評価値が良いとされていたもの）
     reevaluate_pop = offspring(:, index(1:psm));
@@ -109,7 +109,7 @@ while fe < maxFE
     % 本当はここでアーカイブを残す（座標、評価値→学習のため）
     arcv.x = [arcv.x;reevaluate_pop'];
     arcv.y = [arcv.y;reevaluate_fit'];
-    %今回はサロゲートを学習しないので、省略
+    
     
     %最良個体を残す
 %     [bestfit, index] = min(parentfit);
@@ -127,26 +127,25 @@ while fe < maxFE
     pop = pop(:, index);
     
     
-    % popとfitの現在のサイズを取得
+    % popの現在のサイズを取得
     current_pop_size = size(pop, 2);
     
-
     % spに基づいてランダムに残す個体数を計算
     n_remain = round(sp * pop_size);
 
     % ランダムに個体と評価値を選出して残す
     random_index = randperm(pop_size, n_remain);
-    random_pop = pop(:, random_index);
-    random_fit = fit(random_index);
+    remain_pop_good = pop(:, random_index);
+    remain_fit_good = fit(random_index);
     
     %下位の評価値のものから次世代に使うものを取り出す
     n_remain_bad = pop_size - n_remain;
     random_index_bad = randperm(current_pop_size - pop_size, n_remain_bad)+pop_size;
-    random_pop_bad = pop(:, random_index_bad);
-    random_fit_bad = fit(random_index_bad);
+    remain_pop_bad = pop(:, random_index_bad);
+    remain_fit_bad = fit(random_index_bad);
     
-    remain_pop = [random_pop random_pop_bad];
-    remain_fit = [random_fit random_fit_bad];
+    remain_pop = [remain_pop_good remain_pop_bad];
+    remain_fit = [remain_fit_good remain_fit_bad];
     
     [remain_fit,index] = sort(remain_fit);
     remain_pop = remain_pop(:,index);
