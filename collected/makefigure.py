@@ -8,7 +8,7 @@ base_dir = ''
 # Generate file names based on the pattern
 surrogate_models = ['ibrbf']
 functions = ['f1', 'f2', 'f4', 'f8', 'f13', 'f15']
-dimensions = ['d10']
+dimensions = ['d10','d30']
 
 # Creating a list of file paths based on the naming pattern
 file_paths = [os.path.join(base_dir, f'changed_collected_data_{model}_{func}_{dim}.csv')
@@ -40,7 +40,7 @@ inset_files = [
     'new_collected_data_ibrbf_f2_d30.csv', 'new_collected_data_ibrbf_f13_d30.csv', 'new_collected_data_ibrbf_f8_d30.csv',
     'new_collected_data_pssvc_f2_d10.csv', 'new_collected_data_pssvc_f8_d10.csv', 'new_collected_data_pssvc_f13_d10.csv',
      'new_collected_data_pssvc_f13_d30.csv',
-     'changed_collected_data_ibrbf_f8_d30.csv', 'changed_collected_data_ibrbf_f2_d30.csv', 'changed_collected_data_ibrbf_f13_d30.csv',
+      'changed_collected_data_ibrbf_f2_d30.csv', 'changed_collected_data_ibrbf_f13_d30.csv',
         'changed_collected_data_ibrbf_f2_d10.csv', 'changed_collected_data_ibrbf_f8_d10.csv', 'changed_collected_data_ibrbf_f13_d10.csv',
 ]
 

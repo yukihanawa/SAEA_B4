@@ -140,8 +140,8 @@ while fe < maxFE
     random_fit = fit(random_index);
     
     %下位の評価値のものから次世代に使うものを取り出す
-    n_remain_bad = pop_size - n_random;
-    random_index_bad = randperm(pop_size+1:current_pop_size, n_remain_bad);
+    n_remain_bad = pop_size - n_remain;
+    random_index_bad = randperm(current_pop_size - pop_size, n_remain_bad)+pop_size;
     random_pop_bad = pop(:, random_index_bad);
     random_fit_bad = fit(random_index_bad);
     
