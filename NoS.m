@@ -35,7 +35,7 @@ global_min_fit = Inf;
 
 % main loop
 while fe < maxFE 
-    fprintf('FE: %d, Fitness: %.2e \n', fe, min(fit))
+%     fprintf('FE: %d, Fitness: %.2e \n', fe, min(fit))
     % Update the global minimum fitness value if necessary
     current_min_fit = min(fit);
     if current_min_fit < global_min_fit

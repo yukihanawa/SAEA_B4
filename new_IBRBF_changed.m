@@ -159,7 +159,7 @@ while fe < maxFE
 %     % 最良個体を追加している
 %     pop = [bestind pop(:, 1:pop_size-1)];
 %     fit = [bestfit fit(1:pop_size-1)];
-    
+%     
 
 
     %fprintf('FE: %d, Fitness: %.2e \n', FE, min(fit));
