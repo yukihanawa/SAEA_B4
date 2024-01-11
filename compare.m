@@ -4,6 +4,7 @@ knn = [1*dim, 2*dim, 3*dim, 4*dim, 5*dim];
 rsm = [0.1 0.2 0.5 0.7 0.9];
 
 for run = 1:1:20
+    %NoS用
     seed = run*100 + 2019;
     fprintf('NoS is starting....')
     for func = [1 2 4 8 13 15]
@@ -16,7 +17,7 @@ for run = 1:1:20
         csvwrite(filename, filled_data)
     end
     fprintf('\n\n\n')
-    
+    %PS-CM用
 %     seed = run*100 + 2019;
 %     fprintf('PSSVC is starting....')
 %     for func = [1 2 4 8 13 15]
@@ -32,7 +33,7 @@ for run = 1:1:20
 %     end
 %     fprintf('\n\n\n')
 
-%IBRBF
+%IBーAFM用
 %     seed = run * 100 + 2019;
 %     fprintf('IBRBF is starting....')
 %     for func = [1 2 4 8 13 15]
@@ -50,7 +51,7 @@ for run = 1:1:20
 %         end
 %     end
 %     fprintf('\n\n\n')
-    
+    %NoS_ps-cm用
 %     seed = run*100 + 2019;
 %     fprintf('NoS_pssvc is starting....')
 %     for func = [1 2 4 8 13 15]
