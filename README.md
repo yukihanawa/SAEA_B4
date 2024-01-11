@@ -20,3 +20,11 @@
 - `calucurate_ave.m`：20試行の結果を一つの表にまとめて平均を算出します。結果は`combine_results`フォルダ内に保存されます。
 - `combine_ave.m`：算出された平均値を一つの表にまとめます。結果は`collected`フォルダ内に保存されます。
 - `collected/makefigure.py`：表を作成するためのPythonスクリプト。
+
+## その他必要なファイルおよびフォルダ
+
+- `input_data` フォルダ：実行に必要な入力データを格納。
+- `cec15_testfunc.c`：CEC 2015のテスト関数のC言語実装。
+- `cec15problems.c`：CEC 2015の問題設定のC言語実装。
+- `cec15_test_func.h`：CEC 2015のテスト関数のヘッダーファイル。
+- `cec15problems.mexmaci64`：Mac OS用のCEC 2015の問題設定の実行可能ファイル。
