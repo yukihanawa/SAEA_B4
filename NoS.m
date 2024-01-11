@@ -27,7 +27,7 @@ gamma=0.4;                          % extra range factor for crossover
 
 pm=0.3;                                 % mutation percentage
 nm=round(pm*pop_size);           % number of mutants
-mu=0.1;                                  % mutation rate
+mu=0.3;                                  % mutation rate
 
 % Initialize global_min_fit_history and global_min_fit
 global_min = nan(maxFE,1);
@@ -74,9 +74,11 @@ while fe < maxFE
         
         p=parentm(:, k);
         
-        offspringm(:, k)=Mutate(p,mu,ub(1), lb(1));
+        offspringm(:, k)=Mutate(p,mu,ub(1), lb(1),seed);
         
     end
+    
+%     sort(eval_pop(fhd,offspringm))
     
     % new offspring
     offspring = [offspringc offspringm];
@@ -131,10 +133,10 @@ function [y1, y2]=Crossover(x1,x2,gamma,VarMax,VarMin)
 end
 
 % mutation operator
-function y=Mutate(x,mu,VarMax,VarMin)
-    
+function y=Mutate(x,mu,VarMax,VarMin,seed)
+     rng(seed);
     nVar=size(x,1);
-    nmu=ceil(mu*nVar);
+%     nmu=ceil(mu*nVar);
     
    % original mutation     
 %     j=randsample(nVar,nmu)';

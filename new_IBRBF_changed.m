@@ -8,7 +8,8 @@ rng(seed); %seed値を設定する
 lb = -100 * ones(dim,1);%lower bound
 ub = 100 * ones(dim,1);%upper bound
 
-maxFE = 200*dim; % maximum function evaluations
+% maxFE = 200*dim; % maximum function evaluations
+maxFE = 2000;
 pop_size = 40; % number of population
 
 rsm = 0.5;%再評価する個体の割合
@@ -83,7 +84,7 @@ while fe < maxFE
     offspringm = zeros(size(parentm));
     for k = 1: nm
         p = parentm(:, k);
-        offspringm(:,k) = Mutate(p, mu, ub(1), lb(1));
+        offspringm(:,k) = Mutate(p, mu, ub(1), lb(1),seed);
     end
     
     %新たな子個体（交叉したものと突然変異させたものを組み合わせる）
@@ -198,8 +199,8 @@ function [y1, y2]=Crossover(x1,x2,gamma,VarMax,VarMin)
 end
 
 % 突然変異関数
-function y=Mutate(x,mu,VarMax,VarMin)
-    
+function y=Mutate(x,mu,VarMax,VarMin,seed)
+     rng(seed);
     nVar=size(x,1);
     %nmu=ceil(mu*nVar);
     

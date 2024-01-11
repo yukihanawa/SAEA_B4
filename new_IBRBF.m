@@ -86,6 +86,7 @@ while fe < maxFE
         offspringm(:,k) = Mutate(p, mu, ub(1), lb(1));
     end
     
+    
     %新たな子個体（交叉したものと突然変異させたものを組み合わせる）
     offspring = [offspringc offspringm];
 
