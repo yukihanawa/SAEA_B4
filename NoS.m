@@ -1,6 +1,8 @@
 function [arcv, global_min] = NoS(func_num, dim, seed)
 
+
 rng(seed);
+
 
 lb = -100 * ones(dim, 1);
 ub = 100 * ones(dim, 1);
@@ -33,8 +35,11 @@ mu=0.3;                                  % mutation rate
 global_min = nan(maxFE,1);
 global_min_fit = Inf;
 
+stream = RandStream('mt19937ar','Seed',0);
+
 % main loop
 while fe < maxFE 
+    RandStream.setGlobalStream(stream);
 %     fprintf('FE: %d, Fitness: %.2e \n', fe, min(fit))
     % Update the global minimum fitness value if necessary
     current_min_fit = min(fit);
@@ -45,7 +50,7 @@ while fe < maxFE
     % Record the current global minimum fitness value
     global_min(fe,1) = global_min_fit;
     
-    ssr = randperm(pop_size);
+    ssr = stream.randperm(pop_size);
     parent = pop(:, ssr);
     parentfit = fit(:, ssr);
     
@@ -62,7 +67,7 @@ while fe < maxFE
         p1=parentc(:, 2*k-1);
         p2=parentc(:, 2*k);
         
-        [offspringc(:, 2*k-1), offspringc(:, 2*k)]=Crossover(p1, p2, gamma, ub(1), lb(1));
+        [offspringc(:, 2*k-1), offspringc(:, 2*k)]=Crossover(p1, p2, gamma, ub(1), lb(1),stream);
         
     end
     
@@ -74,7 +79,7 @@ while fe < maxFE
         
         p=parentm(:, k);
         
-        offspringm(:, k)=Mutate(p,mu,ub(1), lb(1),seed);
+        offspringm(:, k)=Mutate(p,mu,ub(1), lb(1),stream);
         
     end
     
@@ -116,42 +121,30 @@ function fit = eval_pop(f, pop)
 end
 
 
-% crossover operator
-function [y1, y2]=Crossover(x1,x2,gamma,VarMax,VarMin)
+% 交叉関数
+function [y1, y2] = Crossover(x1, x2, gamma, VarMax, VarMin, stream)
+    alpha = stream.rand(size(x1)) * (1 + 2 * gamma) - gamma;  % 乱数ストリームを使用
 
-    alpha=unifrnd(-gamma,1+gamma,size(x1));
-    
-    y1=alpha.*x1+(1-alpha).*x2;
-    y2=alpha.*x2+(1-alpha).*x1;
-    
-    y1=max(y1,VarMin);
-    y1=min(y1,VarMax);
-    
-    y2=max(y2,VarMin);
-    y2=min(y2,VarMax);
+    y1 = alpha .* x1 + (1 - alpha) .* x2;
+    y2 = alpha .* x2 + (1 - alpha) .* x1;
 
+    y1 = max(y1, VarMin);
+    y1 = min(y1, VarMax);
+
+    y2 = max(y2, VarMin);
+    y2 = min(y2, VarMax);
 end
 
-% mutation operator
-function y=Mutate(x,mu,VarMax,VarMin,seed)
-     rng(seed);
-    nVar=size(x,1);
-%     nmu=ceil(mu*nVar);
-    
-   % original mutation     
-%     j=randsample(nVar,nmu)';
-%     
-%     sigma=0.1*(VarMax-VarMin);
-%     
-%     y=x;
-%     y(j)=x(j)+sigma*randn(size(j));
-%     
-%     y=max(y,VarMin);
-%     y=min(y,VarMax);
-    
-    % uniform mutation 
-    r = rand(nVar, 1) >= mu;
-    y = unifrnd(VarMin, VarMax, nVar, 1);
-    y(r) = x(r);
 
+% 突然変異関数
+% 突然変異関数
+function y = Mutate(x, mu, VarMax, VarMin, stream)
+    nVar = size(x, 1);
+    r = stream.rand(nVar, 1) < mu;  % 乱数ストリームを使用
+
+    y = x;
+    y(r) = stream.rand(sum(r), 1) * (VarMax - VarMin) + VarMin;  % 乱数ストリームを使用
+
+    y = max(y, VarMin);
+    y = min(y, VarMax);
 end

@@ -4,7 +4,9 @@ function [arcv, global_min, correct_rate] = new_IBRBF_changed( func_num, dim, se
 %精度の推移を記録する配列
 correct_rate = [];
 
+
 rng(seed); %seed値を設定する
+
 lb = -100 * ones(dim,1);%lower bound
 ub = 100 * ones(dim,1);%upper bound
 
@@ -47,8 +49,12 @@ fe = 5*dim; %評価回数を更新
 [fit, index] = sort(fit); 
 pop = pop(:,index);
 
+stream = RandStream('mt19937ar','Seed',0);
+stream1 = RandStream('mt19937ar','Seed',0); 
+
 % Main loop（最大評価回数を超える前繰り返す）
 while fe < maxFE
+    RandStream.setGlobalStream(stream);
     
     % Update the global minimum fitness value if necessary
     current_min_fit = min(arcv.y);
@@ -60,7 +66,7 @@ while fe < maxFE
     global_min(fe,1) = global_min_fit;
     
     %親集団をランダムに並び替え
-    ssr = randperm(pop_size); %1からpop_sizeまでの数字をランダムに並べたベクトルを作成
+    ssr = stream.randperm(pop_size); %1からpop_sizeまでの数字をランダムに並べたベクトルを作成
     parent = pop(:,ssr); %個体の座標を並べ直す
     parentfit = fit(:,ssr); %個体の評価値を並べ直す
     
@@ -76,7 +82,7 @@ while fe < maxFE
         p1 = parentc(:, 2*k-1);
         p2 = parentc(:, 2*k);
         
-        [offspringc(:, 2*k-1),offspringc(:, 2*k)] = Crossover(p1, p2, gamma,ub(1),lb(1));
+        [offspringc(:, 2*k-1),offspringc(:, 2*k)] = Crossover(p1, p2, gamma,ub(1),lb(1),stream);
     end
     
     %突然変異
@@ -84,7 +90,7 @@ while fe < maxFE
     offspringm = zeros(size(parentm));
     for k = 1: nm
         p = parentm(:, k);
-        offspringm(:,k) = Mutate(p, mu, ub(1), lb(1),seed);
+        offspringm(:,k) = Mutate(p, mu, ub(1), lb(1),stream);
     end
     
     %新たな子個体（交叉したものと突然変異させたものを組み合わせる）
@@ -135,13 +141,13 @@ while fe < maxFE
     n_remain = round(sp * pop_size);
 
     % ランダムに個体と評価値を選出して残す
-    random_index = randperm(pop_size, n_remain);
+    random_index = stream1.randperm(pop_size, n_remain);
     remain_pop_good = pop(:, random_index);
     remain_fit_good = fit(random_index);
     
     %下位の評価値のものから次世代に使うものを取り出す
     n_remain_bad = pop_size - n_remain;
-    random_index_bad = randperm(current_pop_size - pop_size, n_remain_bad)+pop_size;
+    random_index_bad = stream1.randperm(current_pop_size - pop_size, n_remain_bad)+pop_size;
     remain_pop_bad = pop(:, random_index_bad);
     remain_fit_bad = fit(random_index_bad);
     
@@ -155,6 +161,7 @@ while fe < maxFE
     % 次世代の個体と評価値を更新
     pop = remain_pop;
     fit = remain_fit;
+    
 
     
 %     % 最良個体を追加している
@@ -183,41 +190,29 @@ end
 
 
 % 交叉関数
-function [y1, y2]=Crossover(x1,x2,gamma,VarMax,VarMin)
+function [y1, y2] = Crossover(x1, x2, gamma, VarMax, VarMin, stream)
+    alpha = stream.rand(size(x1)) * (1 + 2 * gamma) - gamma;  % 乱数ストリームを使用
 
-    alpha=unifrnd(-gamma,1+gamma,size(x1));
-    
-    y1=alpha.*x1+(1-alpha).*x2;
-    y2=alpha.*x2+(1-alpha).*x1;
-    
-    y1=max(y1,VarMin);
-    y1=min(y1,VarMax);
-    
-    y2=max(y2,VarMin);
-    y2=min(y2,VarMax);
+    y1 = alpha .* x1 + (1 - alpha) .* x2;
+    y2 = alpha .* x2 + (1 - alpha) .* x1;
 
+    y1 = max(y1, VarMin);
+    y1 = min(y1, VarMax);
+
+    y2 = max(y2, VarMin);
+    y2 = min(y2, VarMax);
 end
 
-% 突然変異関数
-function y=Mutate(x,mu,VarMax,VarMin,seed)
-     rng(seed);
-    nVar=size(x,1);
-    %nmu=ceil(mu*nVar);
-    
-   % original mutation     
-%     j=randsample(nVar,nmu)';
-%     
-%     sigma=0.1*(VarMax-VarMin);
-%     
-%     y=x;
-%     y(j)=x(j)+sigma*randn(size(j));
-%     
-%     y=max(y,VarMin);
-%     y=min(y,VarMax);
-    
-    % uniform mutation 
-    r = rand(nVar, 1) >= mu;
-    y = unifrnd(VarMin, VarMax, nVar, 1);
-    y(r) = x(r);
 
+% 突然変異関数
+% 突然変異関数
+function y = Mutate(x, mu, VarMax, VarMin, stream)
+    nVar = size(x, 1);
+    r = stream.rand(nVar, 1) < mu;  % 乱数ストリームを使用
+
+    y = x;
+    y(r) = stream.rand(sum(r), 1) * (VarMax - VarMin) + VarMin;  % 乱数ストリームを使用
+
+    y = max(y, VarMin);
+    y = min(y, VarMax);
 end

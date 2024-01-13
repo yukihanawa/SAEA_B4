@@ -1,9 +1,24 @@
-clear;
-sp = 1.0;
-pop_size = 40;
-current_pop_size = 80;
-% spに基づいてランダムに残す個体数を計算
-    n_remain = round(sp * pop_size)
+randomStreamDemo
 
-    n_remain_bad = pop_size - n_remain
-% fprintf('%d',c(1));
+function randomStreamDemo
+    % 各関数用の乱数ストリームを作成
+    stream1 = RandStream('mt19937ar', 'Seed', 0);
+    stream2 = RandStream('mt19937ar', 'Seed', 0);
+
+    for i = 1:5  % 5回のループを想定
+        disp(['Iteration ' num2str(i)]);
+        % function1とfunction2を呼び出し、それぞれのストリームを渡す
+        function1(stream1);
+        function2(stream2);
+    end
+end
+
+function function1(stream)
+    RandStream.setGlobalStream(stream);  % グローバルストリームを設定
+    disp(randperm(stream, 10, 2));  % 10の中から2つのランダムな数値を選択
+end
+
+function function2(stream)
+    RandStream.setGlobalStream(stream);  % 同じストリームを使用
+    disp(randperm(stream, 10, 2));  % 同じランダム配列を生成
+end
