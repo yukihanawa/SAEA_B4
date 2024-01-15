@@ -50,6 +50,10 @@ inset_ymin_files = {
     # 他のファイルに対する最小値指定も同様に追加可能
 }
 
+inset_ymax_files = {
+    'changed_collected_data_ibrbf_f8_d10.csv': 9e2
+}
+
 # Function to plot each graph with conditional logarithmic scale and inset, and save it
 def plot_and_save_graph(file_path, use_log_scale, add_inset):
     # Read data from CSV file
@@ -90,6 +94,10 @@ def plot_and_save_graph(file_path, use_log_scale, add_inset):
         if os.path.basename(file_path) in inset_ymin_files:
             ymin = inset_ymin_files[os.path.basename(file_path)]
             inset_ax.set_ylim(bottom=ymin)
+        # 特定のファイルのインセットの縦軸の最大値を設定
+        if os.path.basename(file_path) in inset_ymax_files:
+            ymax = inset_ymax_files[os.path.basename(file_path)]
+            inset_ax.set_ylim(top=ymax)
 
     # Save the plot to the specified folder
     save_path = os.path.join(base_dir, os.path.basename(file_path).replace('.csv', '.pdf').replace('changed_collected_data_', 'changed_'))
