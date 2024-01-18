@@ -6,12 +6,12 @@ import os
 base_dir = ''
 
 # Generate file names based on the pattern
-surrogate_models = ['ibrbf']
+surrogate_models = ['generation']
 functions = ['f1', 'f2', 'f4', 'f8', 'f13', 'f15']
-dimensions = ['d10','d30']
+dimensions = ['d10']
 
 # Creating a list of file paths based on the naming pattern
-file_paths = [os.path.join(base_dir, f'changed_collected_data_{model}_{func}_{dim}.csv')
+file_paths = [os.path.join(base_dir, f'collected_data_{model}_{func}_{dim}.csv')
               for model in surrogate_models
               for func in functions
               for dim in dimensions]

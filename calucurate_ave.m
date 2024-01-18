@@ -1,11 +1,11 @@
 % 設定
 f_value = [1,2,4,8,13,15]; % fの値
-d_value = 30; % dの値
+d_value = 10; % dの値
 num_runs = 20; % runの数
 sp_value = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
 
 % 対象となるファイル名のプレフィックスを配列に格納
-file_prefixes = {'ibrbf'};
+file_prefixes = {'generation'};
 % nosresult用
 
 prefix = 'nosresult';
@@ -58,7 +58,7 @@ for p = 1:length(file_prefixes)
 
             for run = 1:num_runs
 %                 filename = sprintf('%s_csv/%s_run%d_f%d_d%d_sp%.2f.csv',prefix, prefix, run, f_v, d_value,sp_v);
-                filename = sprintf('%s_csv/new_%s_changed_run%d_f%d_d%d_sp%.2f.csv',prefix, prefix, run, f_v, d_value,sp_v);
+                filename = sprintf('%s_csv/%s_run%d_f%d_d%d_sp%.2f.csv',prefix, prefix, run, f_v, d_value,sp_v);
                 if ~exist(filename, 'file')
                     fprintf('ファイルが存在しません: %s\n', filename);
                     continue; % 次のループへ進む
@@ -78,8 +78,8 @@ for p = 1:length(file_prefixes)
             all_data_with_mean = [all_data, mean_values];
 
             % 新しいCSVファイルに保存
-%             new_filename = sprintf('combine_results/aggregated_%s_f%d_d%d_sp%.2f.csv', prefix, f_v, d_value,sp_v);
-            new_filename = sprintf('combine_results/changed_aggregated_%s_f%d_d%d_sp%.2f.csv', prefix, f_v, d_value,sp_v);
+            new_filename = sprintf('combine_results/aggregated_%s_f%d_d%d_sp%.2f.csv', prefix, f_v, d_value,sp_v);
+%             new_filename = sprintf('combine_results/changed_aggregated_%s_f%d_d%d_sp%.2f.csv', prefix, f_v, d_value,sp_v);
             csvwrite(new_filename, all_data_with_mean);
         end
     end
