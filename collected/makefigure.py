@@ -6,12 +6,12 @@ import os
 base_dir = ''
 
 # Generate file names based on the pattern
-surrogate_models = ['generation']
+surrogate_models = ['new_collected_data_pssvc','changed_collected_data_ibrbf','collected_data_generation']
 functions = ['f1', 'f2', 'f4', 'f8', 'f13', 'f15']
-dimensions = ['d10']
+dimensions = ['d10','d30']
 
 # Creating a list of file paths based on the naming pattern
-file_paths = [os.path.join(base_dir, f'collected_data_{model}_{func}_{dim}.csv')
+file_paths = [os.path.join(base_dir, f'{model}_{func}_{dim}.csv')
               for model in surrogate_models
               for func in functions
               for dim in dimensions]
@@ -73,7 +73,7 @@ def plot_and_save_graph(file_path, use_log_scale, add_inset):
 
     ax.set_xticks(range(0, data.iloc[:, 0].max() + 1, 200))
     ax.set_xlabel('Evaluation Count',fontsize=14)
-    ax.set_ylabel('Difference from Minimum value' + (' (log scale)' if use_log_scale else ''), fontsize=14)
+    ax.set_ylabel('Difference from Optimal value' + (' (log scale)' if use_log_scale else ''), fontsize=14)
     if use_log_scale:
         ax.set_yscale('log')
     ax.legend(fontsize = 14)
