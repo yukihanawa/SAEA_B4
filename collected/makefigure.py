@@ -6,9 +6,11 @@ import os
 base_dir = ''
 
 # Generate file names based on the pattern
-surrogate_models = ['new_collected_data_pssvc','changed_collected_data_ibrbf','collected_data_generation']
-functions = ['f1', 'f2', 'f4', 'f8', 'f13', 'f15']
-dimensions = ['d10','d30']
+# surrogate_models = ['new_collected_data_pssvc','changed_collected_data_ibrbf','collected_data_generation']
+surrogate_models = ['new_collected_data_pssvc']
+# functions = ['f1', 'f4', 'f15']
+functions = ['f2']
+dimensions = ['d30']
 
 # Creating a list of file paths based on the naming pattern
 file_paths = [os.path.join(base_dir, f'{model}_{func}_{dim}.csv')
@@ -32,6 +34,8 @@ log_scale_files = [
     'new_collected_data_pssvc_f1_d30.csv', 'new_collected_data_pssvc_f8_d30.csv',
     'changed_collected_data_ibrbf_f1_d30.csv', 'changed_collected_data_ibrbf_f8_d30.csv',
     'changed_collected_data_ibrbf_f1_d10.csv', 'changed_collected_data_ibrbf_f2_d10.csv', 'changed_collected_data_ibrbf_f8_d10.csv', 'changed_collected_data_ibrbf_f13_d10.csv',
+    'collected_data_generation_f1_d30.csv', 'collected_data_generation_f8_d30.csv',
+    'collected_data_generation_f1_d10.csv', 'collected_data_generation_f2_d10.csv', 'collected_data_generation_f8_d10.csv', 'collected_data_generation_f13_d10.csv',
 ]
 inset_files = [
     'collected_data_pssvc_f2_d10.csv', 'collected_data_pssvc_f8_d10.csv', 'collected_data_pssvc_f13_d10.csv',
@@ -42,16 +46,19 @@ inset_files = [
      'new_collected_data_pssvc_f13_d30.csv',
       'changed_collected_data_ibrbf_f2_d30.csv', 'changed_collected_data_ibrbf_f13_d30.csv',
         'changed_collected_data_ibrbf_f2_d10.csv', 'changed_collected_data_ibrbf_f8_d10.csv', 'changed_collected_data_ibrbf_f13_d10.csv',
+    'collected_data_generation_f1_d10.csv', 'collected_data_generation_f8_d10.csv', 'collected_data_generation_f13_d10.csv',
 ]
 
 inset_ymin_files = {
     'collected_data_pssvc_f2_d10.csv': 1e4,
     'new_collected_data_pssvc_f2_d10.csv': 1e4,
+    'collected_data_generation_f8_d10.csv': 7.9e2,
     # 他のファイルに対する最小値指定も同様に追加可能
 }
 
 inset_ymax_files = {
-    'changed_collected_data_ibrbf_f8_d10.csv': 9e2
+    'changed_collected_data_ibrbf_f8_d10.csv': 9e2,
+    'collected_data_generation_f1_d10.csv': 5e4,'collected_data_generation_f8_d10.csv': 8.2e2,'collected_data_generation_f13_d10.csv': 1.625e3,
 }
 
 # Function to plot each graph with conditional logarithmic scale and inset, and save it
@@ -72,17 +79,17 @@ def plot_and_save_graph(file_path, use_log_scale, add_inset):
                 marker=markers[i % len(markers)], markevery=200, color=colors[i % len(colors)])
 
     ax.set_xticks(range(0, data.iloc[:, 0].max() + 1, 200))
-    ax.set_xlabel('Evaluation Count',fontsize=14)
-    ax.set_ylabel('Difference from Optimal value' + (' (log scale)' if use_log_scale else ''), fontsize=14)
+    ax.set_xlabel('Evaluation Count',fontsize=18)
+    ax.set_ylabel('Difference from Optimal value' + (' (log scale)' if use_log_scale else ''), fontsize=18)
     if use_log_scale:
         ax.set_yscale('log')
-    ax.legend(fontsize = 14)
+    ax.legend(fontsize = 18)
 
     # Adding an inset for the last 500 evaluations if specified
     if add_inset:
         # Create an inset axes
-        # inset_ax = fig.add_axes([0.45, 0.55, 0.3, 0.3])
         inset_ax = fig.add_axes([0.45, 0.55, 0.3, 0.3])
+        # inset_ax = fig.add_axes([0.26, 0.22, 0.3, 0.3])
         for i, column in enumerate(data.columns[1:]):
             inset_ax.plot(data.iloc[-500:, 0], data.iloc[-500:, i+1], 
                           linestyle=line_styles[i % len(line_styles)],
@@ -100,7 +107,7 @@ def plot_and_save_graph(file_path, use_log_scale, add_inset):
             inset_ax.set_ylim(top=ymax)
 
     # Save the plot to the specified folder
-    save_path = os.path.join(base_dir, os.path.basename(file_path).replace('.csv', '.pdf').replace('changed_collected_data_', 'changed_'))
+    save_path = os.path.join(base_dir, os.path.basename(file_path).replace('.csv', '.pdf').replace('changed_collected_data_', 'b_'))
     plt.savefig(save_path, bbox_inches='tight')
     plt.close()  # Close the figure after saving
 
