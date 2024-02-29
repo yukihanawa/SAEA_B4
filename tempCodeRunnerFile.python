@@ -1,28 +1,22 @@
-import matplotlib.pyplot as plt
-import numpy as np
+import datetime, base64, requests, json
+from threading import Thread, Timer
+from Crypto.Hash import CMAC
+from Crypto.Cipher import AES
 
-# 仮のデータセットを生成
-x = np.linspace(-10, 10, 100)
-y = np.sin(x) + np.random.normal(0, 0.1, 100)  # サンプルデータにノイズを加える
-y_true = np.sin(x)  # 真の関数
+uuid = '38742574-DEC3-EC0F-E1EC-BEB992C9301'
+secret_key = 'BAAAAAAAAAAAb1'
+api_key = '7BwI4bilxO5Ga4JiIQhPMaffvdeXpCEr1s9trx74'
 
-# サンプルポイントをプロット
-plt.scatter(x, y, label='サンプルポイント')
+# HTTP header
+headers = { 'x-api-key': api_key }
 
-# 真の関数をプロット
-plt.plot(x, y_true, label='真の関数', color='green')
-
-# サロゲートモデルの近似曲線をプロット
-# この例では、真の関数に基づいていますが、実際にはサロゲートモデルから生成する必要があります。
-plt.plot(x, y_true, label='サロゲートモデル', linestyle='--', color='blue')
-
-# グラフのタイトルと軸ラベルを設定
-plt.title('サロゲートモデルによる最適化の例')
-plt.xlabel('パラメータの値')
-plt.ylabel('評価値')
-
-# 凡例を表示
-plt.legend()
-
-# グラフを表示
-plt.show()
+# signの生成
+cmac = CMAC.new(bytes.fromhex(secret_key), ciphermod=AES)
+message = int(datetime.datetime.now().timestamp()).to_bytes(4, 'little', signed=False)[1:4]
+cmac.update(message)
+sign = cmac.hexdigest()
+            
+#鍵の状態取得
+surl = f'https://app.candyhouse.co/api/sesame2/{uuid}'
+sres = requests.get(surl, headers=headers) #リクエスト
+print(sres.text)

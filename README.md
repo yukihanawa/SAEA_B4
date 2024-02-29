@@ -10,9 +10,10 @@
 
 ## 主要関数
 
-- `NoS.m`：サロゲートなしモデル。
-- `new_IBRBF.m`：IB-AFMの旧バージョン。
+- `NoS.m`：サロゲートなしモデルfor IB-AFM。
 - `new_IBRBF_changed.m`：IB-AFMの現在のバージョン。
+- `PS_classification.m`: PS-classificationモデル．
+- `NoS_PSSVC`:サロゲートなしPSのモデル
 
 ## 実行関数
 
@@ -28,3 +29,14 @@
 - `cec15problems.c`：CEC 2015の問題設定のC言語実装。
 - `cec15_test_func.h`：CEC 2015のテスト関数のヘッダーファイル。
 - `cec15problems.mexmaci64`：Mac OS用のCEC 2015の問題設定の実行可能ファイル。
+
+## 各実行結果が入るフォルダ
+- `pssvc_csv`
+- `nosresult_csv`
+- `nos_pssvc_csv`
+- `ibrbf_csv`
+- `generation_csv`
+
+## グラフ作成用
+- `kendall_tau.py` : ケンドールのタウを求める
+- `mannwhiteneyu.py`: マンホイットニーのU検定

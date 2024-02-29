@@ -20,11 +20,13 @@ for function in functions:
             # ファイル名を生成
             ibrbf_file = f'combine_results/changed_aggregated_ibrbf_{function}_{dimension}_sp{accuracy}.csv'
             pssvc_file = f'combine_results/aggregated_pssvc_{function}_{dimension}_sp{accuracy}.csv'
+            gb_file = f'combine_results/aggregated_generation_{function}_{dimension}_sp{accuracy}.csv'
 
             # 2000行目のデータを読み込む
             try:
                 data_ibrbf = pd.read_csv(ibrbf_file, skiprows=1999, nrows=1, header=None, usecols=columns_to_use).values.flatten()
                 data_pssvc = pd.read_csv(pssvc_file, skiprows=1999, nrows=1, header=None, usecols=columns_to_use).values.flatten()
+                data_gb = pd.read_csv(gb_file, skiprows=1999, nrows=1, header=None, usecols=columns_to_use).values.flatten()
             except FileNotFoundError:
                 # ファイルが見つからない場合はスキップ
                 print(f"File not found: {ibrbf_file} or {pssvc_file}")
@@ -36,7 +38,9 @@ for function in functions:
                 print(data_pssvc)
 
             # マンホイットニーU検定を実施
-            stat, p = mannwhitneyu(data_pssvc, data_ibrbf, alternative='less')
+            # stat, p = mannwhitneyu(data_pssvc, data_ibrbf, alternative='less')
+            # stat, p = mannwhitneyu(data_gb, data_ibrbf, alternative='less')
+            stat,p = mannwhitneyu(data_gb, data_pssvc, alternative='less')
 
             # 結果を記録
             results.append([function, dimension, accuracy, p])
@@ -45,7 +49,7 @@ for function in functions:
 results_df = pd.DataFrame(results, columns=['Function', 'Dimension', 'Accuracy', 'P-Value'])
 
 # 結果をCSVファイルに出力
-results_df.to_csv('mannwhitneyu_results.csv', index=False)
+results_df.to_csv('mannwhitneyu_results_gbvsps.csv', index=False)
 
 
 
