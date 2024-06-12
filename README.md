@@ -1,7 +1,7 @@
 # SAEA_B4
 
 この文書では、`SAEA_B4`プロジェクトにおける主要な関数とその実行手順について説明します。
-これらのプログラムはhttps://github.com/HawkTom/CodeforSAEAsurvey/tree/mainを参考に作成しました。
+これらのプログラムはhttps://github.com/HawkTom/CodeforSAEAsurvey/tree/main を参考に作成しました。
 
 ## 概要
 
