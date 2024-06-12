@@ -38,9 +38,9 @@ for function in functions:
                 print(data_pssvc)
 
             # マンホイットニーU検定を実施
-            # stat, p = mannwhitneyu(data_pssvc, data_ibrbf, alternative='less')
-            # stat, p = mannwhitneyu(data_gb, data_ibrbf, alternative='less')
-            stat,p = mannwhitneyu(data_gb, data_pssvc, alternative='less')
+            stat, p = mannwhitneyu(data_ibrbf, data_pssvc, alternative='less')
+            # stat, p = mannwhitneyu(data_ibrbf, data_gb, alternative='less')
+            # stat,p = mannwhitneyu(data_pssvc, data_gb, alternative='less')
 
             # 結果を記録
             results.append([function, dimension, accuracy, p])
@@ -49,7 +49,7 @@ for function in functions:
 results_df = pd.DataFrame(results, columns=['Function', 'Dimension', 'Accuracy', 'P-Value'])
 
 # 結果をCSVファイルに出力
-results_df.to_csv('mannwhitneyu_results_gbvsps.csv', index=False)
+results_df.to_csv('mannwhitneyu_results_ibvsps.csv', index=False)
 
 
 

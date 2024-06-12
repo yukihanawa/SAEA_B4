@@ -5,12 +5,18 @@ import os
 # Base directory where the data files are located
 base_dir = ''
 
+plt.rcParams['text.usetex'] = True
+# plt.rcParams['text.latex.preamble'] = [r'\usepackage{sansmath}', r'\sansmath']
+plt.rcParams['font.family'] = 'sans-serif'
+plt.rcParams['font.sans-serif'] = 'Helvetica'
+
+
 # Generate file names based on the pattern
-# surrogate_models = ['new_collected_data_pssvc','changed_collected_data_ibrbf','collected_data_generation']
-surrogate_models = ['new_collected_data_pssvc']
-# functions = ['f1', 'f4', 'f15']
-functions = ['f2']
-dimensions = ['d30']
+surrogate_models = ['new_collected_data_pssvc','changed_collected_data_ibrbf']
+# surrogate_models = ['collected_data_generation']
+functions = ['f1','f2','f4','f8','f13','f15']
+# functions = ['f2']
+dimensions = ['d10','d30']
 
 # Creating a list of file paths based on the naming pattern
 file_paths = [os.path.join(base_dir, f'{model}_{func}_{dim}.csv')
@@ -21,7 +27,8 @@ file_paths = [os.path.join(base_dir, f'{model}_{func}_{dim}.csv')
 # Define distinct line styles, markers, and colors
 line_styles = ['-', '--', '-.', ':', (0, (3, 1, 1, 1)), (0, (3, 5, 1, 5))]
 markers = ['o', 's', 'D', '^', 'v', '<', '>', 'p', '*', 'h', 'H', '+', 'x', 'X', '|', '_']
-colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'orange', 'purple', 'brown']
+# colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'orange', 'purple', 'brown']
+colors = ['b', 'g', 'r', 'c', 'm', 'orange', 'k', 'lime', 'purple', 'brown']
 
 # Define the files for logarithmic scale and inset
 log_scale_files = [
@@ -76,14 +83,15 @@ def plot_and_save_graph(file_path, use_log_scale, add_inset):
     for i, column in enumerate(data.columns[1:]):
         ax.plot(data.iloc[:, 0], data[column], label=column,
                 linestyle=line_styles[i % len(line_styles)],
+                linewidth=2.5,
                 marker=markers[i % len(markers)], markevery=200, color=colors[i % len(colors)])
 
     ax.set_xticks(range(0, data.iloc[:, 0].max() + 1, 200))
-    ax.set_xlabel('Evaluation Count',fontsize=18)
-    ax.set_ylabel('Difference from Optimal value' + (' (log scale)' if use_log_scale else ''), fontsize=18)
+    ax.set_xlabel('Evaluation Count',fontsize=20)
+    ax.set_ylabel('Difference from Optimal value' + (' (log scale)' if use_log_scale else ''), fontsize=20)
     if use_log_scale:
         ax.set_yscale('log')
-    ax.legend(fontsize = 18)
+    ax.legend(fontsize = 14)
 
     # Adding an inset for the last 500 evaluations if specified
     if add_inset:
@@ -107,8 +115,10 @@ def plot_and_save_graph(file_path, use_log_scale, add_inset):
             inset_ax.set_ylim(top=ymax)
 
     # Save the plot to the specified folder
-    save_path = os.path.join(base_dir, os.path.basename(file_path).replace('.csv', '.pdf').replace('changed_collected_data_', 'b_'))
+    save_path = os.path.join(base_dir, os.path.basename(file_path).replace('.csv', '.pdf').replace('changed_collected_data_', 'b_').replace('new_collected_data_', 'b_'))
+    # save_path_eps = os.path.join(base_dir, os.path.basename(file_path).replace('.csv', '.eps')).replace('collected_data_', '')
     plt.savefig(save_path, bbox_inches='tight')
+    # plt.savefig(save_path_eps, bbox_inches='tight',format='eps')
     plt.close()  # Close the figure after saving
 
 # Iterate through the file paths and plot each graph, then save
