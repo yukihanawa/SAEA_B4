@@ -12,14 +12,14 @@ plt.rcParams['font.sans-serif'] = 'Helvetica'
 
 
 # Generate file names based on the pattern
-surrogate_models = ['new_collected_data_pssvc','changed_collected_data_ibrbf']
-# surrogate_models = ['collected_data_generation']
+surrogate_models = ['ibbubble']
+# surrogate_models = ['collected_data_ibbubble']
 functions = ['f1','f2','f4','f8','f13','f15']
 # functions = ['f2']
-dimensions = ['d10','d30']
+dimensions = ['d10']
 
 # Creating a list of file paths based on the naming pattern
-file_paths = [os.path.join(base_dir, f'{model}_{func}_{dim}.csv')
+file_paths = [os.path.join(base_dir, f'collected_{model}_{func}_{dim}.csv')
               for model in surrogate_models
               for func in functions
               for dim in dimensions]
@@ -32,31 +32,24 @@ colors = ['b', 'g', 'r', 'c', 'm', 'orange', 'k', 'lime', 'purple', 'brown']
 
 # Define the files for logarithmic scale and inset
 log_scale_files = [
-    # ... (list of files for logarithmic scale)
-     'collected_data_pssvc_f1_d10.csv', 'collected_data_pssvc_f2_d10.csv', 'collected_data_pssvc_f8_d10.csv',
-    'collected_data_pssvc_f1_d30.csv', 'collected_data_pssvc_f8_d30.csv',
-    'new_collected_data_ibrbf_f1_d10.csv', 'new_collected_data_ibrbf_f2_d10.csv', 'new_collected_data_ibrbf_f8_d10.csv',
-    'new_collected_data_ibrbf_f1_d30.csv', 'new_collected_data_ibrbf_f8_d30.csv',
-    'new_collected_data_pssvc_f1_d10.csv', 'new_collected_data_pssvc_f2_d10.csv', 'new_collected_data_pssvc_f8_d10.csv',
-    'new_collected_data_pssvc_f1_d30.csv', 'new_collected_data_pssvc_f8_d30.csv',
-    'changed_collected_data_ibrbf_f1_d30.csv', 'changed_collected_data_ibrbf_f8_d30.csv',
-    'changed_collected_data_ibrbf_f1_d10.csv', 'changed_collected_data_ibrbf_f2_d10.csv', 'changed_collected_data_ibrbf_f8_d10.csv', 'changed_collected_data_ibrbf_f13_d10.csv',
+    # ...logスケールにするやつ
+    'collected_ibafs_f2_d10.csv', 'collected_ibafs_f8_d10.csv', 'collected_ibafs_f13_d10.csv',
+
     'collected_data_generation_f1_d30.csv', 'collected_data_generation_f8_d30.csv',
     'collected_data_generation_f1_d10.csv', 'collected_data_generation_f2_d10.csv', 'collected_data_generation_f8_d10.csv', 'collected_data_generation_f13_d10.csv',
+    'collected_ibbubble_f1_d10.csv','collected_ibbubble_f2_d10.csv', 'collected_ibbubble_f8_d10.csv', 'collected_ibbubble_f13_d10.csv',
 ]
 inset_files = [
-    'collected_data_pssvc_f2_d10.csv', 'collected_data_pssvc_f8_d10.csv', 'collected_data_pssvc_f13_d10.csv',
-     'collected_data_pssvc_f13_d30.csv',
-    'new_collected_data_ibrbf_f2_d10.csv', 'new_collected_data_ibrbf_f8_d10.csv', 'new_collected_data_ibrbf_f13_d10.csv',
-    'new_collected_data_ibrbf_f2_d30.csv', 'new_collected_data_ibrbf_f13_d30.csv', 'new_collected_data_ibrbf_f8_d30.csv',
-    'new_collected_data_pssvc_f2_d10.csv', 'new_collected_data_pssvc_f8_d10.csv', 'new_collected_data_pssvc_f13_d10.csv',
-     'new_collected_data_pssvc_f13_d30.csv',
-      'changed_collected_data_ibrbf_f2_d30.csv', 'changed_collected_data_ibrbf_f13_d30.csv',
-        'changed_collected_data_ibrbf_f2_d10.csv', 'changed_collected_data_ibrbf_f8_d10.csv', 'changed_collected_data_ibrbf_f13_d10.csv',
+    # ...インセットを追加するやつ
+    'collected_ibafs_f1_d10.csv', 'collected_ibafs_f2_d10.csv', 'collected_ibafs_f8_d10.csv','collected_ibafs_f13_d10.csv',
+
     'collected_data_generation_f1_d10.csv', 'collected_data_generation_f8_d10.csv', 'collected_data_generation_f13_d10.csv',
+
+    'collected_ibbubble_f2_d10.csv','collected_ibbubble_f4_d10.csv','collected_ibbubble_f8_d10.csv', 'collected_ibbubble_f13_d10.csv',
 ]
 
 inset_ymin_files = {
+    # インセットの縦軸の最小値を指定
     'collected_data_pssvc_f2_d10.csv': 1e4,
     'new_collected_data_pssvc_f2_d10.csv': 1e4,
     'collected_data_generation_f8_d10.csv': 7.9e2,
@@ -64,8 +57,10 @@ inset_ymin_files = {
 }
 
 inset_ymax_files = {
+    # インセットの縦軸の最大値を指定
     'changed_collected_data_ibrbf_f8_d10.csv': 9e2,
     'collected_data_generation_f1_d10.csv': 5e4,'collected_data_generation_f8_d10.csv': 8.2e2,'collected_data_generation_f13_d10.csv': 1.625e3,
+    'collected_ibbubble_f4_d10.csv': 8e2,
 }
 
 # Function to plot each graph with conditional logarithmic scale and inset, and save it
@@ -87,11 +82,12 @@ def plot_and_save_graph(file_path, use_log_scale, add_inset):
                 marker=markers[i % len(markers)], markevery=200, color=colors[i % len(colors)])
 
     ax.set_xticks(range(0, data.iloc[:, 0].max() + 1, 200))
-    ax.set_xlabel('Evaluation Count',fontsize=20)
-    ax.set_ylabel('Difference from Optimal value' + (' (log scale)' if use_log_scale else ''), fontsize=20)
+    ax.set_xlabel('Evaluation Count',fontsize=24)
+    ax.set_ylabel('Difference from Optimal value' + (' (log scale)' if use_log_scale else ''), fontsize=24)
     if use_log_scale:
         ax.set_yscale('log')
-    ax.legend(fontsize = 14)
+    # ax.legend(fontsize = 14) #凡例はでふぉるとの位置に表示
+    ax.legend(fontsize=14, loc='center left', bbox_to_anchor=(1, 0.5))#凡例の位置を調整
 
     # Adding an inset for the last 500 evaluations if specified
     if add_inset:
@@ -115,7 +111,7 @@ def plot_and_save_graph(file_path, use_log_scale, add_inset):
             inset_ax.set_ylim(top=ymax)
 
     # Save the plot to the specified folder
-    save_path = os.path.join(base_dir, os.path.basename(file_path).replace('.csv', '.pdf').replace('changed_collected_data_', 'b_').replace('new_collected_data_', 'b_'))
+    save_path = os.path.join(base_dir, os.path.basename(file_path).replace('.csv', '.pdf'))
     # save_path_eps = os.path.join(base_dir, os.path.basename(file_path).replace('.csv', '.eps')).replace('collected_data_', '')
     plt.savefig(save_path, bbox_inches='tight')
     # plt.savefig(save_path_eps, bbox_inches='tight',format='eps')

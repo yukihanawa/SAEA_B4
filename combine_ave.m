@@ -1,10 +1,10 @@
 % 初期設定
 f_value = [1,2,4,8,13,15]; % fの値
-d_value = 30; % dの値は10
+d_value = 10; % dの値は10
 sp_values = 0.5:0.1:1.0; % spの値は0.5から1.0まで0.1刻み
 run = 20;
 % 対象となるファイル名のプレフィックスを配列に格納
-file_prefixes = {'generation'};
+file_prefixes = {'ibbubble'};
 
 % データを保存する配列を初期化
 % +1列目で行数+1、+1行目でsp値を保存する
@@ -27,8 +27,8 @@ for p = 1:length(file_prefixes)
         for sp = 1:length(sp_values)
             sp_v = sp_values(sp);
             % ファイル名を生成
+%             filename = sprintf('combine_results/aggregated_%s_f%d_d%d_sp%.2f.csv', prefix, f_v, d_value, sp_v);
             filename = sprintf('combine_results/aggregated_%s_f%d_d%d_sp%.2f.csv', prefix, f_v, d_value, sp_v);
-%             filename = sprintf('combine_results/changed_aggregated_%s_f%d_d%d_sp%.2f.csv', prefix, f_v, d_value, sp_v);
             if ~exist(filename, 'file')
                 fprintf('ファイルが存在しません: %s\n', filename);
                 continue; % 次のループへ進む
@@ -54,9 +54,9 @@ for p = 1:length(file_prefixes)
         end
 
         % 新しいCSVファイルにデータを書き出す
-        new_filename = sprintf('collected/collected_data_%s_f%d_d%d.csv', prefix, f_v, d_value);
+%         new_filename = sprintf('collected/collected_data_%s_f%d_d%d.csv', prefix, f_v, d_value);
 %         new_filename = sprintf('collected/new_collected_data_%s_f%d_d%d.csv', prefix, f_v, d_value);
-%           new_filename = sprintf('collected/changed_collected_data_%s_f%d_d%d.csv', prefix, f_v, d_value);
+          new_filename = sprintf('collected/collected_%s_f%d_d%d.csv', prefix, f_v, d_value);
         
         
         csvwrite(new_filename, collected_data);
