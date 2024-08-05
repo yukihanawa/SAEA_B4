@@ -59,7 +59,7 @@ inset_ymin_files = {
     'collected_data_pssvc_f2_d10.csv': 1e4,
     'new_collected_data_pssvc_f2_d10.csv': 1e4,
     'collected_data_generation_f8_d10.csv': 7.9e2,
-    
+
     # 他のファイルに対する最小値指定も同様に追加可能
 }
 

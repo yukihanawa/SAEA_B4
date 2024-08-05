@@ -1,4 +1,4 @@
-function [arcv, global_min, correct_rate] = IBAFS( func_num, dim, seed, sp)
+function [arcv, global_min, correct_rate] = IB_AFS( func_num, dim, seed, sp)
 % Parameter settings
 
 %精度の推移を記録する配列
@@ -44,6 +44,8 @@ pop = arcv.x(1:pop_size,:)';% 集団
 
 fe = 5*dim; %評価回数を更新
 
+%実評価値(1)or予測値(0)を記憶する配列
+p_value_state = ones(1,dim);
 
 %評価値の良い順番に並び替え
 [fit, index] = sort(fit); 
@@ -69,6 +71,7 @@ while fe < maxFE
     ssr = stream.randperm(pop_size); %1からpop_sizeまでの数字をランダムに並べたベクトルを作成
     parent = pop(:,ssr); %個体の座標を並べ直す
     parentfit = fit(:,ssr); %個体の評価値を並べ直す
+    p_value_state = p_value_state(:,ssr);
     
     %交叉に使う親個体を選択
     spc = ssr(1:nc);
@@ -109,6 +112,12 @@ while fe < maxFE
 
     % 再評価する個体を選ぶ（評価値が良いとされていたもの）
     reevaluate_pop = offspring(:, index(1:psm));
+    
+    %子個体が実評価されているか，されていないかの配列
+    o_value_state = zeros(1,dim);
+    %再評価した個体
+    o_value_state(:,index(1:psm)) = 1;
+    
     %再評価
     reevaluate_fit = eval_pop(fhd, reevaluate_pop);
     fe = fe + psm;  % 評価回数を更新
@@ -128,50 +137,20 @@ while fe < maxFE
        % 次世代に残る候補を集める（親、再評価された子個体、再評価されなかった子個体）
     pop = [parent reevaluate_pop  offspring(:, index(psm+1:end))];
     fit = [parentfit reevaluate_fit offspring_fit_assumed(index(psm+1:end))];
+    value_state = [p_value_state o_value_state];
 
     % 候補の評価値を元に並び替え
-    [fit, index] = sort(fit);
+    [fit, index, value_state] = bubbleSort(fit, sp, stream1, value_state);
     pop = pop(:, index);
-    
-    
-    % popの現在のサイズを取得
-    current_pop_size = size(pop, 2);
     
     % spに基づいてランダムに残す個体数を計算
     n_remain = round(sp * pop_size);
 
-    % ランダムに個体と評価値を選出して残す
-    random_index = stream1.randperm(pop_size, n_remain);
-    remain_pop_good = pop(:, random_index);
-    remain_fit_good = fit(random_index);
+    % 次の世代の個体
+    pop = pop(:, 1 : n_remain);
+    fit = fit(1 : n_remain);
+    p_value_state = value_state(1:n_remain);
     
-    %下位の評価値のものから次世代に使うものを取り出す
-    n_remain_bad = pop_size - n_remain;
-    random_index_bad = stream1.randperm(current_pop_size - pop_size, n_remain_bad)+pop_size;
-    remain_pop_bad = pop(:, random_index_bad);
-    remain_fit_bad = fit(random_index_bad);
-    
-    remain_pop = [remain_pop_good remain_pop_bad];
-    remain_fit = [remain_fit_good remain_fit_bad];
-    
-    [remain_fit,index] = sort(remain_fit);
-    remain_pop = remain_pop(:,index);
-    
-    
-    % 次世代の個体と評価値を更新
-    pop = remain_pop;
-    fit = remain_fit;
-    
-
-    
-%     % 最良個体を追加している
-%     pop = [bestind pop(:, 1:pop_size-1)];
-%     fit = [bestfit fit(1:pop_size-1)];
-%     
-
-
-    %fprintf('FE: %d, Fitness: %.2e \n', FE, min(fit));
-%     fprintf('%.2e\n',min(fit));
 
 end  
 end
