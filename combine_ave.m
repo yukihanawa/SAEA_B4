@@ -4,7 +4,7 @@ d_value = 30; % dの値は10
 sp_values = 0.5:0.1:1.0; % spの値は0.5から1.0まで0.1刻み
 run = 20;
 % 対象となるファイル名のプレフィックスを配列に格納
-file_prefixes = {'ibbubble','ibafs'};
+file_prefixes = {'ibafs'};
 
 % データを保存する配列を初期化
 % +1列目で行数+1、+1行目でsp値を保存する

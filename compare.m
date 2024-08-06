@@ -82,18 +82,18 @@ for run = 1:1:20
 %     fprintf('\n\n\n')
 
 %IBーAFM用(bubble sort)
-    seed = run * 100 + 2019;
-    fprintf('IBAFS_bubble is starting....run%d',run);
-    for func = [1 2 4 8 13 15]
-        for sp = [0.5,0.6,0.7,0.8,0.9,1.0]
-            fprintf('func: %d\n', func);    
-            [evolve, min_hist, correct_rate] = ibafs_bubblesort(func, dim, seed, sp);
-            filename = sprintf('ibbubble_csv/ibbubble_run%d_f%d_d%d_sp%.2f.csv',run,func,dim,sp);
-            filled_data = fillmissing(min_hist(1:2000),'previous');
-            csvwrite(filename, filled_data)
-        end
-    end
-    fprintf('\n\n\n')
+%     seed = run * 100 + 2019;
+%     fprintf('IBAFS_bubble is starting....run%d',run);
+%     for func = [1 2 4 8 13 15]
+%         for sp = [0.5,0.6,0.7,0.8,0.9,1.0]
+%             fprintf('func: %d\n', func);    
+%             [evolve, min_hist, correct_rate] = ibafs_bubblesort(func, dim, seed, sp);
+%             filename = sprintf('ibbubble_csv/ibbubble_run%d_f%d_d%d_sp%.2f.csv',run,func,dim,sp);
+%             filled_data = fillmissing(min_hist(1:2000),'previous');
+%             csvwrite(filename, filled_data)
+%         end
+%     end
+%     fprintf('\n\n\n')
 
 
 end

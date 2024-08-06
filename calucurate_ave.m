@@ -1,11 +1,11 @@
 % 設定
 f_value = [1,2,4,8,13,15]; % fの値
-d_value = 30; % dの値
+d_value = 10; % dの値
 num_runs = 20; % runの数
 sp_value = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
 
 % 対象となるファイル名のプレフィックスを配列に格納
-file_prefixes = {'ibbubble','ibafs'};
+file_prefixes = {'ibafs'};
 % nosresult用
 
 prefix = 'nosresult';

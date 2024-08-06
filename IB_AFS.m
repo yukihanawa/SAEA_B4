@@ -1,4 +1,4 @@
-function [arcv, global_min, correct_rate] = IB_AFS( func_num, dim, seed, sp)
+function [arcv, global_min, correct_rate] = IB_AFS(func_num, dim, seed, sp)
 % Parameter settings
 
 %精度の推移を記録する配列
@@ -45,7 +45,7 @@ pop = arcv.x(1:pop_size,:)';% 集団
 fe = 5*dim; %評価回数を更新
 
 %実評価値(1)or予測値(0)を記憶する配列
-p_value_state = ones(1,dim);
+p_value_state = ones(1,pop_size);
 
 %評価値の良い順番に並び替え
 [fit, index] = sort(fit); 
@@ -114,7 +114,7 @@ while fe < maxFE
     reevaluate_pop = offspring(:, index(1:psm));
     
     %子個体が実評価されているか，されていないかの配列
-    o_value_state = zeros(1,dim);
+    o_value_state = zeros(1,pop_size);
     %再評価した個体
     o_value_state(:,index(1:psm)) = 1;
     
@@ -142,14 +142,11 @@ while fe < maxFE
     % 候補の評価値を元に並び替え
     [fit, index, value_state] = bubbleSort(fit, sp, stream1, value_state);
     pop = pop(:, index);
-    
-    % spに基づいてランダムに残す個体数を計算
-    n_remain = round(sp * pop_size);
 
     % 次の世代の個体
-    pop = pop(:, 1 : n_remain);
-    fit = fit(1 : n_remain);
-    p_value_state = value_state(1:n_remain);
+    pop = pop(:, 1 : pop_size);
+    fit = fit(1 : pop_size);
+    p_value_state = value_state(1:pop_size);
     
 
 end  

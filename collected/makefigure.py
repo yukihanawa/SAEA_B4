@@ -12,11 +12,11 @@ plt.rcParams['font.sans-serif'] = 'Helvetica'
 
 
 # Generate file names based on the pattern
-surrogate_models = ['ibbubble', 'ibafs']
+surrogate_models = ['ibafs']
 # surrogate_models = ['collected_data_ibbubble']
 functions = ['f1','f2','f4','f8','f13','f15']
 # functions = ['f2']
-dimensions = ['d30']
+dimensions = ['d10']
 
 # Creating a list of file paths based on the naming pattern
 file_paths = [os.path.join(base_dir, f'collected_{model}_{func}_{dim}.csv')
