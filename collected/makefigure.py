@@ -35,7 +35,7 @@ log_scale_files = [
     # ...logスケールにするやつ
     'collected_ibafs_f1_d10.csv','collected_ibafs_f2_d10.csv', 'collected_ibafs_f8_d10.csv', 'collected_ibafs_f13_d10.csv',
 
-    'collected_data_ibafs_f2_d30.csv','collected_data_ibafs_f8_d30.csv',
+    'collected_ibafs_f1_d30.csv','collected_ibafs_f8_d30.csv',
 
     'collected_data_generation_f1_d30.csv', 'collected_data_generation_f8_d30.csv',
     'collected_data_generation_f1_d10.csv', 'collected_data_generation_f2_d10.csv', 'collected_data_generation_f8_d10.csv', 'collected_data_generation_f13_d10.csv',
@@ -44,12 +44,12 @@ log_scale_files = [
 ]
 inset_files = [
     # ...インセットを追加するやつ
-    'collected_ibafs_f1_d10.csv', 'collected_ibafs_f2_d10.csv', 'collected_ibafs_f8_d10.csv','collected_ibafs_f13_d10.csv',
+    'collected_ibafs_f4_d10.csv', 'collected_ibafs_f2_d10.csv', 'collected_ibafs_f8_d10.csv','collected_ibafs_f13_d10.csv',
     'collected_ibbubble_f1_d30.csv', 'collected_ibbubble_f2_d30.csv', 'collected_ibbubble_f8_d30.csv','collected_ibbubble_f13_d30.csv',
 
     'collected_data_generation_f1_d10.csv', 'collected_data_generation_f8_d10.csv', 'collected_data_generation_f13_d10.csv',
 
-    'collected_ibafs_f2_d30.csv','collected_ibafs_f8_d30.csv',
+    'collected_ibafs_f2_d30.csv','collected_ibafs_f8_d30.csv','collected_ibafs_f13_d30.csv','collected_ibafs_f15_d30.csv',
     'collected_ibbubble_f2_d10.csv','collected_ibbubble_f4_d10.csv','collected_ibbubble_f8_d10.csv', 'collected_ibbubble_f13_d10.csv',
 
 ]
@@ -65,7 +65,7 @@ inset_ymin_files = {
 
 inset_ymax_files = {
     # インセットの縦軸の最大値を指定
-    'changed_collected_data_ibrbf_f8_d10.csv': 9e2,
+    'collected_ibafs_f8_d10.csv': 8.035e2,
     'collected_data_generation_f1_d10.csv': 5e4,'collected_data_generation_f8_d10.csv': 8.2e2,'collected_data_generation_f13_d10.csv': 1.625e3,
     'collected_ibbubble_f4_d10.csv': 8e2,
     'collected_ibbubble_f8_d30.csv': 1e3,
