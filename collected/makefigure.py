@@ -16,7 +16,7 @@ surrogate_models = ['ibafs']
 # surrogate_models = ['collected_data_ibbubble']
 functions = ['f1','f2','f4','f8','f13','f15']
 # functions = ['f2']
-dimensions = ['d10']
+dimensions = ['d10','d30']
 
 # Creating a list of file paths based on the naming pattern
 file_paths = [os.path.join(base_dir, f'collected_{model}_{func}_{dim}.csv')
@@ -33,9 +33,9 @@ colors = ['b', 'g', 'r', 'c', 'm', 'orange', 'k', 'lime', 'purple', 'brown']
 # Define the files for logarithmic scale and inset
 log_scale_files = [
     # ...logスケールにするやつ
-    'collected_ibafs_f2_d10.csv', 'collected_ibafs_f8_d10.csv', 'collected_ibafs_f13_d10.csv',
+    'collected_ibafs_f1_d10.csv','collected_ibafs_f2_d10.csv', 'collected_ibafs_f8_d10.csv', 'collected_ibafs_f13_d10.csv',
 
-    'collected_data_ibafs_f8_d30.csv',
+    'collected_data_ibafs_f2_d30.csv','collected_data_ibafs_f8_d30.csv',
 
     'collected_data_generation_f1_d30.csv', 'collected_data_generation_f8_d30.csv',
     'collected_data_generation_f1_d10.csv', 'collected_data_generation_f2_d10.csv', 'collected_data_generation_f8_d10.csv', 'collected_data_generation_f13_d10.csv',

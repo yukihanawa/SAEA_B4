@@ -1,4 +1,4 @@
-function [arcv, global_min, correct_rate] = IB_AFS( func_num, dim, seed, sp)
+function [arcv, global_min, correct_rate] = IB_AFS(func_num, dim, seed, sp)
 % Parameter settings
 
 %精度の推移を記録する配列
@@ -45,7 +45,7 @@ pop = arcv.x(1:pop_size,:)';% 集団
 fe = 5*dim; %評価回数を更新
 
 %実評価値(1)or予測値(0)を記憶する配列
-p_value_state = ones(1,dim);
+p_value_state = ones(1,pop_size);
 
 %評価値の良い順番に並び替え
 [fit, index] = sort(fit); 
@@ -71,7 +71,7 @@ while fe < maxFE
     ssr = stream.randperm(pop_size); %1からpop_sizeまでの数字をランダムに並べたベクトルを作成
     parent = pop(:,ssr); %個体の座標を並べ直す
     parentfit = fit(:,ssr); %個体の評価値を並べ直す
-    p_value_state = p_value_state(:,ssr);%
+    p_value_state = p_value_state(:,ssr);
     
     %交叉に使う親個体を選択
     spc = ssr(1:nc);
@@ -105,16 +105,17 @@ while fe < maxFE
 
     % 評価値を予測（実評価関数を使う）
     offspring_fit_assumed = eval_pop(fhd, offspring);
-    
+    %子個体が実評価されているか，されていないかの配列
+    o_value_state = zeros(1,pop_size);
     
     % 予測値を元に並び替え
-    [~, index] = sort(offspring_fit_assumed);
+    [offspring_fit_assumed, index, ~] = bubbleSort(offspring_fit_assumed,sp,stream1,o_value_sate);
+    
+    offspring = offspring(:,index);
 
     % 再評価する個体を選ぶ（評価値が良いとされていたもの）
     reevaluate_pop = offspring(:, index(1:psm));
-    
-    %子個体が実評価されているか，されていないかの配列
-    o_value_state = zeros(1,dim);
+   
     %再評価した個体
     o_value_state(:,index(1:psm)) = 1;
     
@@ -123,8 +124,9 @@ while fe < maxFE
     fe = fe + psm;  % 評価回数を更新
 
     % 本当はここでアーカイブを残す（座標、評価値→学習のため）
-    arcv.x = [arcv.x;reevaluate_pop'];
-    arcv.y = [arcv.y;reevaluate_fit'];
+    %本実験では使わないためコメントアウト
+%     arcv.x = [arcv.x;reevaluate_pop'];
+%     arcv.y = [arcv.y;reevaluate_fit'];
     
     
     %最良個体を残す
@@ -135,21 +137,18 @@ while fe < maxFE
 %     parentfit(index) = [];
 
        % 次世代に残る候補を集める（親、再評価された子個体、再評価されなかった子個体）
-    pop = [parent reevaluate_pop  offspring(:, index(psm+1:end))];
+    pop = [parent reevaluate_pop  offspring_fit_assumed(:, index(psm+1:end))];
     fit = [parentfit reevaluate_fit offspring_fit_assumed(index(psm+1:end))];
     value_state = [p_value_state o_value_state];
 
     % 候補の評価値を元に並び替え
     [fit, index, value_state] = bubbleSort(fit, sp, stream1, value_state);
     pop = pop(:, index);
-    
-    % spに基づいてランダムに残す個体数を計算
-    n_remain = round(sp * pop_size);
 
     % 次の世代の個体
-    pop = pop(:, 1 : n_remain);
-    fit = fit(1 : n_remain);
-    p_value_state = value_state(1:n_remain);
+    pop = pop(:, 1 : pop_size);
+    fit = fit(1 : pop_size);
+    p_value_state = value_state(1:pop_size);
     
 
 end  

@@ -105,16 +105,15 @@ while fe < maxFE
 
     % 評価値を予測（実評価関数を使う）
     offspring_fit_assumed = eval_pop(fhd, offspring);
-    
+    %子個体が実評価されているか，されていないかの配列
+    o_value_state = zeros(1,pop_size);
     
     % 予測値を元に並び替え
-    [~, index] = sort(offspring_fit_assumed);
+    [~, index, ~] = bubbleSort(offspring_fit_assumed,sp,stream1,o_value_state);
 
     % 再評価する個体を選ぶ（評価値が良いとされていたもの）
     reevaluate_pop = offspring(:, index(1:psm));
-    
-    %子個体が実評価されているか，されていないかの配列
-    o_value_state = zeros(1,pop_size);
+   
     %再評価した個体
     o_value_state(:,index(1:psm)) = 1;
     
