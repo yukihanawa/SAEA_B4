@@ -1,5 +1,5 @@
 clear;
-dim = 10;
+dim = 30;
 knn = [1*dim, 2*dim, 3*dim, 4*dim, 5*dim];
 rsm = [0.1 0.2 0.5 0.7 0.9];
 
