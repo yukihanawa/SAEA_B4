@@ -106,7 +106,7 @@ while fe < maxFE
 
 
         % 予測値を元に並び替え
-        [~, index,~] = bubbleSort(offspring_fit_assumed,sp,stream1,o_value_state);
+        [offspring_fit_assumed, index,~] = bubbleSort(offspring_fit_assumed,sp,stream1,o_value_state);
         
         offspring = offspring(:,index);
 
@@ -126,12 +126,10 @@ while fe < maxFE
         value_state = [p_value_state o_value_state];
 
         % 候補の評価値を元に並び替え
-        [fit, index,value_state] = bubbleSort(fit,sp,stream1,value_state);
+        [fit, index, value_state] = bubbleSort(fit,sp,stream1,value_state);
         pop = pop(:, index);
 
         
-
-
         % 次世代の個体と評価値を更新
         pop = pop(:,1:pop_size);
         fit = fit(1:pop_size);
