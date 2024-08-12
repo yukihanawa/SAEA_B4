@@ -12,7 +12,7 @@ plt.rcParams['font.sans-serif'] = 'Helvetica'
 
 
 # Generate file names based on the pattern
-surrogate_models = ['gbafs']
+surrogate_models = ['ibafs']
 # surrogate_models = ['collected_data_ibbubble']
 functions = ['f1','f2','f4','f8','f13','f15']
 # functions = ['f2']

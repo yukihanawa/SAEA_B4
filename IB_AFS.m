@@ -125,6 +125,9 @@ while fe < maxFE
     arcv.x = [arcv.x;reevaluate_pop'];
     arcv.y = [arcv.y;reevaluate_fit'];
     
+    o_value_state_re = ones(1, psm);
+    o_value_state_ = zeros(1, pop_size-psm);
+    
     
     %最良個体を残す
 %     [bestfit, index] = min(parentfit);
@@ -136,7 +139,7 @@ while fe < maxFE
        % 次世代に残る候補を集める（親、再評価された子個体、再評価されなかった子個体）
     pop = [parent reevaluate_pop  offspring(:, index(psm+1:end))];
     fit = [parentfit reevaluate_fit offspring_fit_assumed(index(psm+1:end))];
-    value_state = [p_value_state o_value_state];
+    value_state = [p_value_state o_value_state_re o_value_state_];%←ここ直す（1111000)みたいに入れてしまった方がいい
 
     % 候補の評価値を元に並び替え
     [fit, index, value_state] = bubbleSort(fit, sp, stream1, value_state);
