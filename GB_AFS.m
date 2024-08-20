@@ -148,7 +148,7 @@ while fe < maxFE
     arcv.x = [arcv.x;reevaluate_pop'];
     arcv.y = [arcv.y;reevaluate_fit'];
     
-    p_value_state(:,index(1:psm)) = 1;
+    p_value_state(:,1:psm) = 1;
 
     
 %     % 最良個体を追加している

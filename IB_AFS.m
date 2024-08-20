@@ -55,8 +55,9 @@ stream = RandStream('mt19937ar','Seed',0);
 stream1 = RandStream('mt19937ar','Seed',0); 
 
 % Main loop（最大評価回数を超える前繰り返す）
-while fe < maxFE
+while fe < maxFE    
     RandStream.setGlobalStream(stream);
+    
     
     % Update the global minimum fitness value if necessary
     current_min_fit = min(arcv.y);
