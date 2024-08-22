@@ -1,4 +1,4 @@
-function [arcv, global_min, correct_rate] = IB_AFS(func_num, dim, seed, sp)
+function [arcv, global_min, correct_rate, pop_history] = IB_AFS(func_num, dim, seed, sp)
 % Parameter settings
 
 %精度の推移を記録する配列
@@ -31,6 +31,10 @@ global_min_fit = Inf;
 
 fhd = @(x)(cec15problems('eval',x,func_num));
 
+%pop_history初期化
+pop_history.x = nan(pop_size, dim, maxFE);
+pop_history.y = nan(pop_size, maxFE);
+
 %LHS(Latin Hypercube Sampling)を使ってサンプルを生成
 arcv.x = repmat(lb', 5*dim,1) + lhsdesign(5*dim,dim, 'iterations',1000).*(repmat(ub' - lb', 5*dim, 1));
 %サンプルを評価
@@ -58,6 +62,9 @@ stream1 = RandStream('mt19937ar','Seed',0);
 while fe < maxFE    
     RandStream.setGlobalStream(stream);
     
+    %pop_historyにほぞん
+    pop_history.x(:,:,fe) = pop';
+    pop_history.y(:,fe) = fit';
     
     % Update the global minimum fitness value if necessary
     current_min_fit = min(arcv.y);
