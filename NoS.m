@@ -36,10 +36,10 @@ global_min = nan(maxFE,1);
 global_min_fit = Inf;
 
 stream = RandStream('mt19937ar','Seed',0);
+RandStream.setGlobalStream(stream);
 
 % main loop
 while fe < maxFE 
-    RandStream.setGlobalStream(stream);
 %     fprintf('FE: %d, Fitness: %.2e \n', fe, min(fit))
     % Update the global minimum fitness value if necessary
     current_min_fit = min(fit);

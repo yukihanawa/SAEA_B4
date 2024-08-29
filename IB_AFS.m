@@ -58,10 +58,10 @@ pop = pop(:,index);
 stream = RandStream('mt19937ar','Seed',0);
 stream1 = RandStream('mt19937ar','Seed',0); 
 
+RandStream.setGlobalStream(stream);
+
 % Main loop（最大評価回数を超える前繰り返す）
-while fe < maxFE    
-    RandStream.setGlobalStream(stream);
-    
+while fe < maxFE
     %pop_historyにほぞん
     pop_history.x(:,1,fe) = fe;
     pop_history.x(:,2,fe) = p_value_state;
