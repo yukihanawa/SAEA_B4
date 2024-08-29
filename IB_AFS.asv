@@ -32,8 +32,8 @@ global_min_fit = Inf;
 fhd = @(x)(cec15problems('eval',x,func_num));
 
 %pop_history初期化
-pop_history.x = zeros(dim, pop_size, maxFE);
-pop_history.y = zeros(pop_size, maxFE);
+pop_history.x = nan(pop_size, dim + 2, maxFE);
+pop_history.y = nan(pop_size, maxFE);
 
 %LHS(Latin Hypercube Sampling)を使ってサンプルを生成
 arcv.x = repmat(lb', 5*dim,1) + lhsdesign(5*dim,dim, 'iterations',1000).*(repmat(ub' - lb', 5*dim, 1));
@@ -64,6 +64,7 @@ while fe < maxFE
     
     %pop_historyにほぞん
     pop_history.x(:,:,fe) = pop';
+    pop_history.y(:,fe) = fit';
     
     % Update the global minimum fitness value if necessary
     current_min_fit = min(arcv.y);

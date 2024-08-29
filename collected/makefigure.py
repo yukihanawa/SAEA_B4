@@ -37,8 +37,7 @@ log_scale_files = [
 
     'collected_ibafs_f1_d30.csv','collected_ibafs_f8_d30.csv',
 
-    'collected_ibbubble_f1_d10.csv','collected_ibbubble_f2_d10.csv', 'collected_ibbubble_f8_d10.csv', 'collected_ibbubble_f13_d10.csv',
-    'collected_ibbubble_f8_d30.csv',
+    'collected_gbafs_f1_d10.csv','collected_gbafs_f2_d10.csv','collected_gbafs_f8_d10.csv','collected_gbafs_f13_d10.csv',
 ]
 inset_files = [
     # ...インセットを追加するやつ
