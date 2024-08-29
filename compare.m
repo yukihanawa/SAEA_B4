@@ -1,5 +1,5 @@
 clear;
-dim = 30;
+dim = 10;
 knn = [1*dim, 2*dim, 3*dim, 4*dim, 5*dim];
 rsm = [0.1 0.2 0.5 0.7 0.9];
 
@@ -50,7 +50,7 @@ for run = 1:1:20
 %             csvwrite(filename, filled_data)
 
               filename2 = sprintf('ibafs_mat/ibafs_run%d_f%d_d%d_sp%.2f.mat',run,func,dim,sp);
-              save(filename2, 'filled_data');
+              save(filename2, 'pop_history');
         end
     end
     fprintf('\n\n\n')

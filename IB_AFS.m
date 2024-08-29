@@ -32,7 +32,7 @@ global_min_fit = Inf;
 fhd = @(x)(cec15problems('eval',x,func_num));
 
 %pop_history初期化
-pop_history.x = nan(pop_size, dim, maxFE);
+pop_history.x = nan(pop_size, dim + 2, maxFE);
 pop_history.y = nan(pop_size, maxFE);
 
 %LHS(Latin Hypercube Sampling)を使ってサンプルを生成
@@ -63,8 +63,17 @@ while fe < maxFE
     RandStream.setGlobalStream(stream);
     
     %pop_historyにほぞん
-    pop_history.x(:,:,fe) = pop';
+    pop_history.x(:,1,fe) = fe;
+    pop_history.x(:,2,fe) = p_value_state;
+    pop_history.x(:,3:end,fe) = pop';
     pop_history.y(:,fe) = fit';
+    
+    for i = 1:pop_size
+        if(p_value_state(i)== 0)
+            fprintf('fe:%d i:%d find 0\n',fe,i);
+        end
+    end
+    
     
     % Update the global minimum fitness value if necessary
     current_min_fit = min(arcv.y);
