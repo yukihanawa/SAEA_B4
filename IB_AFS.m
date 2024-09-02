@@ -68,11 +68,11 @@ while fe < maxFE
     pop_history.x(:,3:end,fe) = pop';
     pop_history.y(:,fe) = fit';
     
-    for i = 1:pop_size
-        if(p_value_state(i)== 0)
-            fprintf('fe:%d i:%d find 0\n',fe,i);
-        end
-    end
+    % for i = 1:pop_size
+    %     if(p_value_state(i)== 0)
+    %         fprintf('fe:%d i:%d find 0\n',fe,i);
+    %     end
+    % end
     
     
     % Update the global minimum fitness value if necessary
