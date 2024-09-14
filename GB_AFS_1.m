@@ -1,4 +1,4 @@
-function [arcv, global_min, correct_rate, pop_history] = GB_AFS( func_num, dim, seed, sp)
+function [arcv, global_min, correct_rate, pop_history] = GB_AFS_1( func_num, dim, seed, sp)
 % Parameter settings
 
 %精度の推移を記録する配列

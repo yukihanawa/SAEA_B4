@@ -75,7 +75,7 @@ for run = 1:1:20
     for func = [1 2 4 8 13 15]
         for sp = [0.5 0.6 0.7 0.8 0.9 1.0]
             fprintf('func: %d sp: %.2f\n', func, sp);    
-            [evolve, min_hist, correct_rate] = GB_AFS_1(func, dim, seed, sp);
+            [evolve, min_hist, correct_rate, pop_history] = GB_AFS_1(func, dim, seed, sp);
 
             %修正バージョン
             filename = sprintf('gbafs_1_csv/gbafs_run%d_f%d_d%d_sp%.2f.csv',run,func,dim,sp);
