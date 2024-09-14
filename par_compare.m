@@ -3,7 +3,7 @@ dim = 10;
 knn = [1*dim, 2*dim, 3*dim, 4*dim, 5*dim];
 rsm = [0.1 0.2 0.5 0.7 0.9];
 
-for run = 1:1:20
+parfor run = 1:20
 %     NoS用
 %     seed = run*100 + 2019;
 %     fprintf('NoS is starting....run:%d',run);
@@ -78,10 +78,10 @@ for run = 1:1:20
             [evolve, min_hist, correct_rate] = GB_AFS_1(func, dim, seed, sp);
 
             %修正バージョン
-            filename = sprintf('gbafs_csv/gbafs_run%d_f%d_d%d_sp%.2f.csv',run,func,dim,sp);
+            filename = sprintf('gbafs_1_csv/gbafs_run%d_f%d_d%d_sp%.2f.csv',run,func,dim,sp);
             filled_data = fillmissing(min_hist(1:2000),'previous');
             csvwrite(filename, filled_data)
-            filename2 = sprintf('gbafs_mat/gbafs_run%d_f%d_d%d_sp%.2f.mat',run,func,dim,sp);
+            filename2 = sprintf('gbafs_1_mat/gbafs_run%d_f%d_d%d_sp%.2f.mat',run,func,dim,sp);
             save(filename2, 'pop_history');
         end
     end
