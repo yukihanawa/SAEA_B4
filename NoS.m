@@ -1,4 +1,4 @@
-function [arcv, global_min] = NoS(func_num, dim, seed)
+function [arcv, global_min,pop_history] = NoS(func_num, dim, seed)
 
 
 rng(seed);
@@ -8,8 +8,12 @@ lb = -100 * ones(dim, 1);
 ub = 100 * ones(dim, 1);
 fhd = @(x)(cec15problems('eval',x,func_num));
 
+
 maxFE = 2000;
 pop_size =40;
+
+pop_history.x = nan(pop_size, dim + 2, maxFE);
+pop_history.y = nan(pop_size, maxFE);
 
 % LHS database initilization
 arcv.x = repmat(lb', 5*dim, 1) + lhsdesign(5*dim, dim, 'iterations', 1000) .* (repmat(ub' - lb', 5*dim, 1));
@@ -40,6 +44,10 @@ RandStream.setGlobalStream(stream);
 
 % main loop
 while fe < maxFE 
+    pop_history.x(:,1,fe) = fe;
+    pop_history.x(:,2,fe) = 1;
+    pop_history.x(:,3:end,fe) = pop';
+    pop_history.y(:,fe) = fit';
 %     fprintf('FE: %d, Fitness: %.2e \n', fe, min(fit))
     % Update the global minimum fitness value if necessary
     current_min_fit = min(fit);

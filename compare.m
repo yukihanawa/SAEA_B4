@@ -5,18 +5,18 @@ rsm = [0.1 0.2 0.5 0.7 0.9];
 
 for run = 1:1:20
 %     NoS用
-%     seed = run*100 + 2019;
-%     fprintf('NoS is starting....run:%d',run);
-%     for func = [1 2 4 8 13 15]
-%         fprintf('func: %d', func);
-%         [evolve,min_hist] = NoS(func, dim, seed);
-% %         filename = sprintf('nosresult/nosresult_run%d_f%d_d%d.mat',run, func, dim);
-% %         save(filename, 'evolve')
-%         filename = sprintf('nosresult_csv/nosresult_run%d_f%d_d%d.csv',run,func,dim);
-%         filled_data = fillmissing(min_hist(1:end),'previous');        
-%         csvwrite(filename, filled_data)
-%     end
-%     fprintf('\n\n\n')
+    seed = run*100 + 2019;
+    fprintf('NoS is starting....run:%d',run);
+    for func = [1 2 4 8 13 15]
+        fprintf('func: %d', func);
+        [evolve,min_hist,pop_history] = NoS(func, dim, seed);
+        filename = sprintf('nosresult_mat/nosresult_run%d_f%d_d%d.mat',run, func, dim);
+        save(filename, 'pop_history')
+        filename = sprintf('nosresult_csv/nosresult_run%d_f%d_d%d.csv',run,func,dim);
+        filled_data = fillmissing(min_hist(1:end),'previous');        
+        csvwrite(filename, filled_data)
+    end
+    fprintf('\n\n\n')
 %     PS-CM用
 %     seed = run*100 + 2019;
 %     fprintf('PSSVC is starting....')
@@ -70,22 +70,22 @@ for run = 1:1:20
 %     fprintf('\n\n\n')
 
     %generation_based
-    seed = run * 100 + 2019;
-    fprintf('generation_based is starting....run:%d\n',run);
-    for func = [1 2 4 8 13 15]
-        for sp = [0.5 0.6 0.7 0.8 0.9 1.0]
-            fprintf('func: %d sp: %.2f\n', func, sp);    
-            [evolve, min_hist, correct_rate, pop_history] = GB_AFS_1(func, dim, seed, sp);
-
-            %修正バージョン
-            filename = sprintf('gbafs_1_csv/gbafs_run%d_f%d_d%d_sp%.2f.csv',run,func,dim,sp);
-            filled_data = fillmissing(min_hist(1:2000),'previous');
-            csvwrite(filename, filled_data)
-            filename2 = sprintf('gbafs_1_mat/gbafs_run%d_f%d_d%d_sp%.2f.mat',run,func,dim,sp);
-            save(filename2, 'pop_history');
-        end
-    end
-    fprintf('\n\n\n')
+%     seed = run * 100 + 2019;
+%     fprintf('generation_based is starting....run:%d\n',run);
+%     for func = [1 2 4 8 13 15]
+%         for sp = [0.5 0.6 0.7 0.8 0.9 1.0]
+%             fprintf('func: %d sp: %.2f\n', func, sp);    
+%             [evolve, min_hist, correct_rate, pop_history] = GB_AFS_1(func, dim, seed, sp);
+% 
+%             %修正バージョン
+%             filename = sprintf('gbafs_1_csv/gbafs_run%d_f%d_d%d_sp%.2f.csv',run,func,dim,sp);
+%             filled_data = fillmissing(min_hist(1:2000),'previous');
+%             csvwrite(filename, filled_data)
+%             filename2 = sprintf('gbafs_1_mat/gbafs_run%d_f%d_d%d_sp%.2f.mat',run,func,dim,sp);
+%             save(filename2, 'pop_history');
+%         end
+%     end
+%     fprintf('\n\n\n')
 
 %IBーAFM用(bubble sort)
 %     seed = run * 100 + 2019;
