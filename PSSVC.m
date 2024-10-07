@@ -1,4 +1,4 @@
-function [all_fitness, global_min] = PSSVC(func_num, dim,seed,sp)
+function [arcv, global_min] = PSSVC(func_num, dim,seed,sp)
 % Parameter settings
 
 rng(seed); %seed値を設定する
@@ -9,7 +9,7 @@ fhd = @(x)(cec15problems('eval',x,func_num));
 maxFE = 2000; % maximum function evaluations
 pop_size = 40; % number of population
 
-all_fitness = nan(1,2000);
+% all_fitness = nan(1,2000);
 
 % parameter
 pc = 0.7; %交叉率
@@ -57,7 +57,7 @@ while FE < maxFE
     % Record the current global minimum fitness value
     global_min(FE,1) = global_min_fit;
 %     fprintf('%.2e\n',min(fit));
-     all_fitness(FE) = min(fit);
+%      all_fitness(FE) = min(fit);
      
      
     ssr = randperm(pop_size); %1からpop_sizeまでの数字をランダムに並べたベクトルを作成
