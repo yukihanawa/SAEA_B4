@@ -45,7 +45,8 @@ pop = arcv.x(1:pop_size,:)';% 集団
 
 FE = 5*dim; %評価回数を更新
 
-p_value_state = ones(1,pop_size); %使わないが、データの整合性のため
+p_value_state = ones(1,pop_size);
+
 
 %評価値の良い順番に並び替え
 [fit, index] = sort(fit); 
@@ -76,6 +77,7 @@ while FE < maxFE
     ssr = randperm(pop_size); %1からpop_sizeまでの数字をランダムに並べたベクトルを作成
     parent = pop(:,ssr); %個体の座標を並べ直す
     parentfit = fit(:,ssr); %個体の評価値を並べ直す
+    p_value_state = p_value_state(:,ssr);
     
     %交叉に使う親個体を選択
     spc = ssr(1:nc);
