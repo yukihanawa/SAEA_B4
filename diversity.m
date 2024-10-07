@@ -167,9 +167,10 @@ function all_data = nosdiversity(f_v,d_value)
                 [num_individuals, num_coords, num_generations] = size(x_data);
 
                 fprintf('個体数: %d, 座標数: %d, 世代数: %d\n', num_individuals, num_coords, num_generations);
-
+                
+                end_row = d_value + 2;
                 % 各世代の座標(3〜12行目)を抽出
-                coords_data = x_data(:, 3:12, :);
+                coords_data = x_data(:, 3:end_row, :);
 
                 % 各世代の多様性を計算
                 diversity_per_generation = NaN(num_generations, 1); % 初期値をNaNで設定

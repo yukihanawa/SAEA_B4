@@ -54,13 +54,13 @@ pop = pop(:,index);
 % Main loop（最大評価回数を超える前繰り返す）
 while FE < maxFE
 %     pop_historyに保存
-    pop_history.x(:,1,fe) = fe;
-    pop_history.x(:,2,fe) = p_value_state;
-    pop_history.x(:,3:end,fe) = pop';
-    pop_history.y(:,fe)=fit';
+    pop_history.x(:,1,FE) = FE;
+    pop_history.x(:,2,FE) = p_value_state;
+    pop_history.x(:,3:end,FE) = pop';
+    pop_history.y(:,FE)=fit';
     
     
-    fprintf('FE: %d, Fitness: %.2e \n', FE, min(fit));
+%     fprintf('FE: %d, Fitness: %.2e \n', FE, min(fit));
     % Update the global minimum fitness value if necessary
     current_min_fit = min(fit);
     if current_min_fit < global_min_fit
