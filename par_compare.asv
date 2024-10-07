@@ -54,7 +54,7 @@ knn = [1*dim, 2*dim, 3*dim, 4*dim, 5*dim];
 rsm = [0.1 0.2 0.5 0.7 0.9];
 
 results = cell(20, 1);  % 結果を保存するセル配列
-parfor run = 20:21
+parfor run = 11:20
     seed = run * 100 + 2019;
     temp_results = [];  % 各反復の結果を一時的に保存
 
@@ -77,7 +77,7 @@ parfor run = 20:21
 end
 
 % parfor の外でファイル保存
-for run = 20: 21
+for run = 11
     temp_results = results{run};
     for i = 1:size(temp_results, 1)
         func = temp_results{i, 2};
