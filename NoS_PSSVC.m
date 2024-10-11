@@ -1,4 +1,4 @@
-function [all_fitness, global_min] = NoS_PSSVC(func_num, dim,seed)
+function [all_fitness, global_min, pop_history] = NoS_PSSVC(func_num, dim,seed)
 % Parameter settings
 
 rng(seed); %seed値を設定する
@@ -8,6 +8,9 @@ fhd = @(x)(cec15problems('eval',x,func_num));
 
 maxFE = 2000; % maximum function evaluations
 pop_size = 40; % number of population
+
+pop_history.x = nan(pop_size, dim + 2, maxFE);
+pop_history.y = nan(pop_size, maxFE);
 
 all_fitness = nan(1,2000);
 
@@ -47,7 +50,13 @@ pop = pop(:,index);
 
 % Main loop（最大評価回数を超える前繰り返す）
 while FE < maxFE
-    fprintf('FE: %d, Fitness: %.2e \n', FE, min(fit));
+    %pop_historyに保存
+    pop_history.x(:,1,FE) = FE;
+    pop_history.x(:,2,FE) = 1;
+    pop_history.x(:,3:end,FE) = pop';
+    pop_history.y(:,FE)=fit';
+    
+%     fprintf('FE: %d, Fitness: %.2e \n', FE, min(fit));
     % Update the global minimum fitness value if necessary
     current_min_fit = min(fit);
     if current_min_fit < global_min_fit
