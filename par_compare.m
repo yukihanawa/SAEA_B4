@@ -17,8 +17,8 @@ parfor run = 1:10
             
             % GB_AFS_1 の返り値を取得
 %             [evolve, min_hist, correct_rate, pop_history] = GB_AFS_1(func, dim, seed, sp);
-%             [evolve, min_hist, pop_history] = PSSVC(func, dim, seed, sp);
-              [evolve, min_hist, pop_history] = NoS_PSSVC(func, dim, seed);
+            [evolve, min_hist, pop_history] = PSSVC(func, dim, seed, sp);
+%               [evolve, min_hist, pop_history] = NoS_PSSVC(func, dim, seed);
 
             % 修正バージョンのデータを temp_results に保存
             filled_data = fillmissing(min_hist(1:2000), 'previous');
