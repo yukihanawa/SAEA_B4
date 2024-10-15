@@ -2,9 +2,9 @@
 f_value = [1,2,4,8,13,15]; % fの値
 d_value = 10; % dの値は10
 sp_values = 0.5:0.1:1.0; % spの値は0.5から1.0まで0.1刻み
-run = 20;
+run = 21;
 % 対象となるファイル名のプレフィックスを配列に格納
-file_prefixes = {'ibafs','nos_pssvc','pssvc','gbafs','nosresult'};
+file_prefixes = {'gbafs'};
 
 % データを保存する配列を初期化
 % +1列目で行数+1、+1行目でsp値を保存する
