@@ -1,4 +1,4 @@
-surrogate = 'gbafs';
+surrogate = 'pscs';
 f_value = [1, 2, 4, 8, 13, 15];
 d = [10, 30]; % 変数d_valueに対応する
 sp_value = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
@@ -12,7 +12,8 @@ for f = 1:length(f_value)
         all_data = [];
         for sp = 1:length(sp_value)
             sp_v = sp_value(sp);
-            filename = sprintf('combine_results/aggregated_%s_f%d_d%d_sp%.2f.csv', surrogate, f_v, d_value, sp_v);
+%             filename = sprintf('combine_results/aggregated_%s_f%d_d%d_sp%.2f.csv', surrogate, f_v, d_value, sp_v);
+            filename = sprintf('combine_results/aggregated_pssvc_f%d_d%d_sp%.2f.csv', f_v, d_value, sp_v);
             
             if ~exist(filename, 'file')
                 fprintf('ファイルが存在しません: %s\n', filename);
@@ -125,7 +126,8 @@ end
 
 function all_data = nosdiversity(f_v,d_value,run)
     all_data_nos =[];
-    filename = sprintf('combine_results/aggregated_nosresult_f%d_d%d.csv', f_v, d_value);
+%     filename = sprintf('combine_results/aggregated_nosresult_f%d_d%d.csv', f_v, d_value);
+      filename = sprintf('combine_results/aggregated_nos_pssvc_f%d_d%d.csv', f_v, d_value);
             
     if ~exist(filename, 'file')
         fprintf('ファイルが存在しません: %s\n', filename);

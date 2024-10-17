@@ -1,4 +1,4 @@
-surrogate = 'ibafs';
+surrogate = 'pscs';
 f_value = [1, 2, 4, 8, 13, 15];
 d = [10, 30]; % 変数d_valueに対応する
 sp_value = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
@@ -12,7 +12,8 @@ for f = 1:length(f_value)
         all_data = [];
         for sp = 1:length(sp_value)
             sp_v = sp_value(sp);
-            filename = sprintf('combine_results/aggregated_%s_f%d_d%d_sp%.2f.csv', surrogate, f_v, d_value, sp_v);
+%             filename = sprintf('combine_results/aggregated_%s_f%d_d%d_sp%.2f.csv', surrogate, f_v, d_value, sp_v);
+            filename = sprintf('combine_results/aggregated_pscs_f%d_d%d_sp%.2f.csv', f_v, d_value, sp_v);
             
             if ~exist(filename, 'file')
                 fprintf('ファイルが存在しません: %s\n', filename);
@@ -38,7 +39,7 @@ for f = 1:length(f_value)
             catch ME
                 fprintf('エラーが発生しました: %s\n', ME.message);
             end
-            filename = sprintf('ibafs_mat/%s_run%d_f%d_d%d_sp%.2f.mat', surrogate, closest_row, f_v, d_value, sp_v);
+            filename = sprintf('%s_mat/%s_run%d_f%d_d%d_sp%.2f.mat',surrogate, surrogate, closest_row, f_v, d_value, sp_v);
 
             % .matファイルの存在確認
             if ~exist(filename, 'file')
@@ -56,9 +57,10 @@ for f = 1:length(f_value)
                         [num_individuals, num_coords, num_generations] = size(x_data);
 
                         fprintf('個体数: %d, 座標数: %d, 世代数: %d\n', num_individuals, num_coords, num_generations);
-
+                        
+                        end_row = d_value + 2;
                         % 各世代の座標(3〜12行目)を抽出
-                        coords_data = x_data(:, 3:12, :);
+                        coords_data = x_data(:, 3:end_row, :);
 
                         % 各世代の多様性を計算
                         diversity_per_generation = NaN(num_generations, 1); % 初期値をNaNで設定
@@ -111,7 +113,7 @@ for f = 1:length(f_value)
             filled_data = fillmissing(diversity_per_generation(1:2000),'previous');
             all_data = horzcat(all_data, filled_data);
         end
-        nos_data = nosdiversity(f_v,d_value);
+        nos_data = nosdiversity(f_v,d_value,run);
         all_data = horzcat(all_data,nos_data);
         % ファイル名の作成（f_vとd_valueごとにファイルを作成）
         filename1 = sprintf('diversity_results/%s_f%d_d%d.csv', surrogate, f_v, d_value);
@@ -122,9 +124,10 @@ for f = 1:length(f_value)
 end
 
 
-function all_data = nosdiversity(f_v,d_value)
+function all_data = nosdiversity(f_v,d_value,run)
     all_data_nos =[];
-    filename = sprintf('combine_results/aggregated_nosresult_f%d_d%d.csv', f_v, d_value);
+%     filename = sprintf('combine_results/aggregated_nosresult_f%d_d%d.csv', f_v, d_value);
+      filename = sprintf('combine_results/aggregated_nos_pscs_f%d_d%d.csv', f_v, d_value);
             
     if ~exist(filename, 'file')
         fprintf('ファイルが存在しません: %s\n', filename);
@@ -133,12 +136,13 @@ function all_data = nosdiversity(f_v,d_value)
 
     try
         data = readmatrix(filename); % csvreadの代わりにreadmatrixを使用
+%         fprintf('run = %d',run);
 
         % 2000行目の1〜20列の中央値を計算
-        median_2000_row = median(data(2000, 1:20));
+        median_2000_row = median(data(2000, 1:run));
 
         % 各行の1〜20列の値に対して中央値との差を計算
-        diff_to_median = abs(data(2000, 1:20) - median_2000_row); 
+        diff_to_median = abs(data(2000, 1:run) - median_2000_row); 
 
         disp(diff_to_median);
 
