@@ -14,7 +14,7 @@ colors = ['b', 'g', 'r', 'c', 'm', 'orange', 'k', 'lime', 'purple', 'brown']
 
 for dim in d:
     for func in f:
-        filename = f'ibafs_f{func}_d{dim}.csv'
+        filename = f'pscs_f{func}_d{dim}.csv'
         data = []
 
         with open(filename, 'r') as csvfile:
@@ -52,7 +52,7 @@ for dim in d:
         plt.xlim(1, 2000)
 
         # グラフを保存
-        plt.savefig(f'ibafs_f{func}_d{dim}.png', dpi=300, bbox_inches='tight')
+        plt.savefig(f'pscs_f{func}_d{dim}.png', dpi=300, bbox_inches='tight')
         plt.close()  # メモリ解放のためにfigureを閉じる
 
 print("All graphs have been generated and saved.")
