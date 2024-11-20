@@ -4,10 +4,12 @@ import numpy as np
 
 # 探索対象の設定
 functions = ['f1', 'f2', 'f4', 'f8', 'f13', 'f15']
-dimensions = ['d10', 'd30']
-accuracies = ['0.50', '0.60', '0.70', '0.80', '0.90', '1.00']
+dimensions = ['d30']
+# accuracies = ['0.50', '0.60', '0.70', '0.80', '0.90', '1.00']
+accuracies = ['0.51', '0.52', '0.53', '0.54', '0.55', '0.56', '0.57', '0.58', '0.59']
+# accuracies = ['0.91', '0.92', '0.93', '0.94', '0.95', '0.96', '0.97', '0.98', '0.99']
 
-surrogate = ['ibafs', 'pssvc', 'gbafs']
+surrogate = ['ibafs', 'gbafs']
 
 # pandasでCSVファイルを読み込む際に使用する列の指定
 columns_to_use = list(range(0, 20))  # Pythonのインデックスは0から始まるため、1-20列は0-19として指定
@@ -25,29 +27,30 @@ for function in functions:
         for accuracy in accuracies:
             # ファイル名を生成
             ibrbf_file = f'combine_results/aggregated_ibafs_{function}_{dimension}_sp{accuracy}.csv'
-            pssvc_file = f'combine_results/aggregated_pssvc_{function}_{dimension}_sp{accuracy}.csv'
+            # pssvc_file = f'combine_results/aggregated_pssvc_{function}_{dimension}_sp{accuracy}.csv'
             gb_file = f'combine_results/aggregated_gbafs_{function}_{dimension}_sp{accuracy}.csv'
 
             # 2000行目のデータを読み込む
             try:
                 ibafs = pd.read_csv(ibrbf_file, skiprows=1999, nrows=1, header=None, usecols=columns_to_use).values.flatten()
-                pssvc = pd.read_csv(pssvc_file, skiprows=1999, nrows=1, header=None, usecols=columns_to_use).values.flatten()
+                # pssvc = pd.read_csv(pssvc_file, skiprows=1999, nrows=1, header=None, usecols=columns_to_use).values.flatten()
                 gbafs = pd.read_csv(gb_file, skiprows=1999, nrows=1, header=None, usecols=columns_to_use).values.flatten()
             except FileNotFoundError:
                 # ファイルが見つからない場合はスキップ
-                print(f"File not found: {ibrbf_file} or {pssvc_file}")
+                # print(f"File not found: {ibrbf_file} or {pssvc_file}")
+                print("File not found")
                 continue
 
             # サロゲートモデルのデータをマッピング
             data_map = {
                 'ibafs': ibafs,
-                'pssvc': pssvc,
+                # 'pssvc': pssvc,
                 'gbafs': gbafs
             }
 
             # マンホイットニーU検定を実施
             # stat, p = mannwhitneyu(data_map[surrogate_model], data_map[surrogate_model_2], alternative='less')
-            stat, p = mannwhitneyu(gbafs, pssvc, alternative='less')
+            stat, p = mannwhitneyu(gbafs, ibafs, alternative='less')
             # stat,p = mannwhitneyu(data_pssvc, data_gb, alternative='less')
 
             # 結果を記録
@@ -58,7 +61,7 @@ results_df = pd.DataFrame(results, columns=['Function', 'Dimension', 'Accuracy',
 
 # 結果をCSVファイルに出力
 # results_df.to_csv(f'mannwhitneyu_results_{surrogate_model}vs{surrogate_model_2}.csv', index=False)
-results_df.to_csv(f'mannwhitneyu_results_gb_vs_ps.csv', index=False)
+results_df.to_csv(f'ad_mannwhitneyu_results_gb_vs_ib.csv', index=False)
 
 
 

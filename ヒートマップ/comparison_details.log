@@ -1,0 +1,1169 @@
+
+Function: f1, Dimension: d10, Accuracy: 0.5
+Comparison: ps vs gb
+ps_vs_gb: p=0.000000 (+)
+
+Function: f1, Dimension: d10, Accuracy: 0.5
+Comparison: ps vs ib
+ps_vs_ib: p=0.999991 (N)
+ib_vs_ps: p=0.000010 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d10, Accuracy: 0.5
+Comparison: ib vs gb
+ib_vs_gb: p=0.000000 (+)
+
+Function: f1, Dimension: d10, Accuracy: 0.6
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d10, Accuracy: 0.6
+Comparison: ps vs ib
+ps_vs_ib: p=0.999999 (N)
+ib_vs_ps: p=0.000002 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d10, Accuracy: 0.6
+Comparison: ib vs gb
+ib_vs_gb: p=0.985280 (N)
+gb_vs_ib: p=0.015759 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d10, Accuracy: 0.7
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d10, Accuracy: 0.7
+Comparison: ps vs ib
+ps_vs_ib: p=0.999998 (N)
+ib_vs_ps: p=0.000002 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d10, Accuracy: 0.7
+Comparison: ib vs gb
+ib_vs_gb: p=0.918202 (N)
+gb_vs_ib: p=0.085965 (N)
+
+Function: f1, Dimension: d10, Accuracy: 0.8
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d10, Accuracy: 0.8
+Comparison: ps vs ib
+ps_vs_ib: p=0.999990 (N)
+ib_vs_ps: p=0.000012 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d10, Accuracy: 0.8
+Comparison: ib vs gb
+ib_vs_gb: p=0.968054 (N)
+gb_vs_ib: p=0.033934 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d10, Accuracy: 0.9
+Comparison: ps vs gb
+ps_vs_gb: p=0.926077 (N)
+gb_vs_ps: p=0.077785 (N)
+
+Function: f1, Dimension: d10, Accuracy: 0.9
+Comparison: ps vs ib
+ps_vs_ib: p=0.710391 (N)
+ib_vs_ps: p=0.298931 (N)
+
+Function: f1, Dimension: d10, Accuracy: 0.9
+Comparison: ib vs gb
+ib_vs_gb: p=0.779625 (N)
+gb_vs_ib: p=0.228475 (N)
+
+Function: f1, Dimension: d10, Accuracy: 1.0
+Comparison: ps vs gb
+ps_vs_gb: p=0.943224 (N)
+gb_vs_ps: p=0.059928 (N)
+
+Function: f1, Dimension: d10, Accuracy: 1.0
+Comparison: ps vs ib
+ps_vs_ib: p=0.473042 (N)
+ib_vs_ps: p=0.537714 (N)
+
+Function: f1, Dimension: d10, Accuracy: 1.0
+Comparison: ib vs gb
+ib_vs_gb: p=0.929790 (N)
+gb_vs_ib: p=0.073923 (N)
+
+Function: f1, Dimension: d30, Accuracy: 0.5
+Comparison: ps vs gb
+ps_vs_gb: p=0.000000 (+)
+
+Function: f1, Dimension: d30, Accuracy: 0.5
+Comparison: ps vs ib
+ps_vs_ib: p=1.000000 (N)
+ib_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d30, Accuracy: 0.5
+Comparison: ib vs gb
+ib_vs_gb: p=0.000000 (+)
+
+Function: f1, Dimension: d30, Accuracy: 0.6
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d30, Accuracy: 0.6
+Comparison: ps vs ib
+ps_vs_ib: p=1.000000 (N)
+ib_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d30, Accuracy: 0.6
+Comparison: ib vs gb
+ib_vs_gb: p=0.926077 (N)
+gb_vs_ib: p=0.077785 (N)
+
+Function: f1, Dimension: d30, Accuracy: 0.7
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d30, Accuracy: 0.7
+Comparison: ps vs ib
+ps_vs_ib: p=0.999999 (N)
+ib_vs_ps: p=0.000001 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d30, Accuracy: 0.7
+Comparison: ib vs gb
+ib_vs_gb: p=0.999997 (N)
+gb_vs_ib: p=0.000003 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d30, Accuracy: 0.8
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d30, Accuracy: 0.8
+Comparison: ps vs ib
+ps_vs_ib: p=0.999981 (N)
+ib_vs_ps: p=0.000021 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d30, Accuracy: 0.8
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d30, Accuracy: 0.9
+Comparison: ps vs gb
+ps_vs_gb: p=0.999992 (N)
+gb_vs_ps: p=0.000009 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d30, Accuracy: 0.9
+Comparison: ps vs ib
+ps_vs_ib: p=0.197085 (N)
+ib_vs_ps: p=0.810334 (N)
+
+Function: f1, Dimension: d30, Accuracy: 0.9
+Comparison: ib vs gb
+ib_vs_gb: p=0.999994 (N)
+gb_vs_ib: p=0.000007 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d30, Accuracy: 1.0
+Comparison: ps vs gb
+ps_vs_gb: p=0.999979 (N)
+gb_vs_ps: p=0.000023 (+)
+Using flipped result from reverse comparison
+
+Function: f1, Dimension: d30, Accuracy: 1.0
+Comparison: ps vs ib
+ps_vs_ib: p=0.000008 (+)
+
+Function: f1, Dimension: d30, Accuracy: 1.0
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d10, Accuracy: 0.5
+Comparison: ps vs gb
+ps_vs_gb: p=0.034959 (+)
+
+Function: f2, Dimension: d10, Accuracy: 0.5
+Comparison: ps vs ib
+ps_vs_ib: p=0.874852 (N)
+ib_vs_ps: p=0.130808 (N)
+
+Function: f2, Dimension: d10, Accuracy: 0.5
+Comparison: ib vs gb
+ib_vs_gb: p=0.002253 (+)
+
+Function: f2, Dimension: d10, Accuracy: 0.6
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d10, Accuracy: 0.6
+Comparison: ps vs ib
+ps_vs_ib: p=0.212420 (N)
+ib_vs_ps: p=0.795344 (N)
+
+Function: f2, Dimension: d10, Accuracy: 0.6
+Comparison: ib vs gb
+ib_vs_gb: p=0.999999 (N)
+gb_vs_ib: p=0.000001 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d10, Accuracy: 0.7
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d10, Accuracy: 0.7
+Comparison: ps vs ib
+ps_vs_ib: p=0.022653 (+)
+
+Function: f2, Dimension: d10, Accuracy: 0.7
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d10, Accuracy: 0.8
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d10, Accuracy: 0.8
+Comparison: ps vs ib
+ps_vs_ib: p=0.007182 (+)
+
+Function: f2, Dimension: d10, Accuracy: 0.8
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d10, Accuracy: 0.9
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d10, Accuracy: 0.9
+Comparison: ps vs ib
+ps_vs_ib: p=0.004177 (+)
+
+Function: f2, Dimension: d10, Accuracy: 0.9
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d10, Accuracy: 1.0
+Comparison: ps vs gb
+ps_vs_gb: p=0.000000 (+)
+
+Function: f2, Dimension: d10, Accuracy: 1.0
+Comparison: ps vs ib
+ps_vs_ib: p=0.000000 (+)
+
+Function: f2, Dimension: d10, Accuracy: 1.0
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d30, Accuracy: 0.5
+Comparison: ps vs gb
+ps_vs_gb: p=0.995988 (N)
+gb_vs_ps: p=0.004345 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d30, Accuracy: 0.5
+Comparison: ps vs ib
+ps_vs_ib: p=0.575094 (N)
+ib_vs_ps: p=0.435532 (N)
+
+Function: f2, Dimension: d30, Accuracy: 0.5
+Comparison: ib vs gb
+ib_vs_gb: p=0.984772 (N)
+gb_vs_ib: p=0.016297 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d30, Accuracy: 0.6
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d30, Accuracy: 0.6
+Comparison: ps vs ib
+ps_vs_ib: p=0.817579 (N)
+ib_vs_ps: p=0.189666 (N)
+
+Function: f2, Dimension: d30, Accuracy: 0.6
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d30, Accuracy: 0.7
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d30, Accuracy: 0.7
+Comparison: ps vs ib
+ps_vs_ib: p=0.019896 (+)
+
+Function: f2, Dimension: d30, Accuracy: 0.7
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d30, Accuracy: 0.8
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d30, Accuracy: 0.8
+Comparison: ps vs ib
+ps_vs_ib: p=0.003856 (+)
+
+Function: f2, Dimension: d30, Accuracy: 0.8
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d30, Accuracy: 0.9
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d30, Accuracy: 0.9
+Comparison: ps vs ib
+ps_vs_ib: p=0.005716 (+)
+
+Function: f2, Dimension: d30, Accuracy: 0.9
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f2, Dimension: d30, Accuracy: 1.0
+Comparison: ps vs gb
+ps_vs_gb: p=0.000000 (+)
+
+Function: f2, Dimension: d30, Accuracy: 1.0
+Comparison: ps vs ib
+ps_vs_ib: p=0.000000 (+)
+
+Function: f2, Dimension: d30, Accuracy: 1.0
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d10, Accuracy: 0.5
+Comparison: ps vs gb
+ps_vs_gb: p=0.000000 (+)
+
+Function: f4, Dimension: d10, Accuracy: 0.5
+Comparison: ps vs ib
+ps_vs_ib: p=1.000000 (N)
+ib_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d10, Accuracy: 0.5
+Comparison: ib vs gb
+ib_vs_gb: p=0.000000 (+)
+
+Function: f4, Dimension: d10, Accuracy: 0.6
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d10, Accuracy: 0.6
+Comparison: ps vs ib
+ps_vs_ib: p=1.000000 (N)
+ib_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d10, Accuracy: 0.6
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d10, Accuracy: 0.7
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d10, Accuracy: 0.7
+Comparison: ps vs ib
+ps_vs_ib: p=1.000000 (N)
+ib_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d10, Accuracy: 0.7
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d10, Accuracy: 0.8
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d10, Accuracy: 0.8
+Comparison: ps vs ib
+ps_vs_ib: p=1.000000 (N)
+ib_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d10, Accuracy: 0.8
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d10, Accuracy: 0.9
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d10, Accuracy: 0.9
+Comparison: ps vs ib
+ps_vs_ib: p=1.000000 (N)
+ib_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d10, Accuracy: 0.9
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d10, Accuracy: 1.0
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d10, Accuracy: 1.0
+Comparison: ps vs ib
+ps_vs_ib: p=0.000000 (+)
+
+Function: f4, Dimension: d10, Accuracy: 1.0
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d30, Accuracy: 0.5
+Comparison: ps vs gb
+ps_vs_gb: p=0.000000 (+)
+
+Function: f4, Dimension: d30, Accuracy: 0.5
+Comparison: ps vs ib
+ps_vs_ib: p=1.000000 (N)
+ib_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d30, Accuracy: 0.5
+Comparison: ib vs gb
+ib_vs_gb: p=0.000000 (+)
+
+Function: f4, Dimension: d30, Accuracy: 0.6
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d30, Accuracy: 0.6
+Comparison: ps vs ib
+ps_vs_ib: p=1.000000 (N)
+ib_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d30, Accuracy: 0.6
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d30, Accuracy: 0.7
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d30, Accuracy: 0.7
+Comparison: ps vs ib
+ps_vs_ib: p=1.000000 (N)
+ib_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d30, Accuracy: 0.7
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d30, Accuracy: 0.8
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d30, Accuracy: 0.8
+Comparison: ps vs ib
+ps_vs_ib: p=1.000000 (N)
+ib_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d30, Accuracy: 0.8
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d30, Accuracy: 0.9
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d30, Accuracy: 0.9
+Comparison: ps vs ib
+ps_vs_ib: p=1.000000 (N)
+ib_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d30, Accuracy: 0.9
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d30, Accuracy: 1.0
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f4, Dimension: d30, Accuracy: 1.0
+Comparison: ps vs ib
+ps_vs_ib: p=0.000000 (+)
+
+Function: f4, Dimension: d30, Accuracy: 1.0
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d10, Accuracy: 0.5
+Comparison: ps vs gb
+ps_vs_gb: p=0.000000 (+)
+
+Function: f8, Dimension: d10, Accuracy: 0.5
+Comparison: ps vs ib
+ps_vs_ib: p=0.999999 (N)
+ib_vs_ps: p=0.000001 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d10, Accuracy: 0.5
+Comparison: ib vs gb
+ib_vs_gb: p=0.000000 (+)
+
+Function: f8, Dimension: d10, Accuracy: 0.6
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d10, Accuracy: 0.6
+Comparison: ps vs ib
+ps_vs_ib: p=0.999997 (N)
+ib_vs_ps: p=0.000004 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d10, Accuracy: 0.6
+Comparison: ib vs gb
+ib_vs_gb: p=0.999999 (N)
+gb_vs_ib: p=0.000001 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d10, Accuracy: 0.7
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d10, Accuracy: 0.7
+Comparison: ps vs ib
+ps_vs_ib: p=0.999856 (N)
+ib_vs_ps: p=0.000160 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d10, Accuracy: 0.7
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000001 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d10, Accuracy: 0.8
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d10, Accuracy: 0.8
+Comparison: ps vs ib
+ps_vs_ib: p=0.992551 (N)
+ib_vs_ps: p=0.008025 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d10, Accuracy: 0.8
+Comparison: ib vs gb
+ib_vs_gb: p=0.999999 (N)
+gb_vs_ib: p=0.000001 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d10, Accuracy: 0.9
+Comparison: ps vs gb
+ps_vs_gb: p=0.999998 (N)
+gb_vs_ps: p=0.000003 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d10, Accuracy: 0.9
+Comparison: ps vs ib
+ps_vs_ib: p=0.657551 (N)
+ib_vs_ps: p=0.352442 (N)
+
+Function: f8, Dimension: d10, Accuracy: 0.9
+Comparison: ib vs gb
+ib_vs_gb: p=0.999840 (N)
+gb_vs_ib: p=0.000178 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d10, Accuracy: 1.0
+Comparison: ps vs gb
+ps_vs_gb: p=0.006404 (+)
+
+Function: f8, Dimension: d10, Accuracy: 1.0
+Comparison: ps vs ib
+ps_vs_ib: p=0.000000 (+)
+
+Function: f8, Dimension: d10, Accuracy: 1.0
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d30, Accuracy: 0.5
+Comparison: ps vs gb
+ps_vs_gb: p=0.000000 (+)
+
+Function: f8, Dimension: d30, Accuracy: 0.5
+Comparison: ps vs ib
+ps_vs_ib: p=1.000000 (N)
+ib_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d30, Accuracy: 0.5
+Comparison: ib vs gb
+ib_vs_gb: p=0.000000 (+)
+
+Function: f8, Dimension: d30, Accuracy: 0.6
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d30, Accuracy: 0.6
+Comparison: ps vs ib
+ps_vs_ib: p=1.000000 (N)
+ib_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d30, Accuracy: 0.6
+Comparison: ib vs gb
+ib_vs_gb: p=0.662493 (N)
+gb_vs_ib: p=0.347446 (N)
+
+Function: f8, Dimension: d30, Accuracy: 0.7
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d30, Accuracy: 0.7
+Comparison: ps vs ib
+ps_vs_ib: p=0.999991 (N)
+ib_vs_ps: p=0.000010 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d30, Accuracy: 0.7
+Comparison: ib vs gb
+ib_vs_gb: p=0.999963 (N)
+gb_vs_ib: p=0.000041 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d30, Accuracy: 0.8
+Comparison: ps vs gb
+ps_vs_gb: p=0.999999 (N)
+gb_vs_ps: p=0.000001 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d30, Accuracy: 0.8
+Comparison: ps vs ib
+ps_vs_ib: p=0.863357 (N)
+ib_vs_ps: p=0.142652 (N)
+
+Function: f8, Dimension: d30, Accuracy: 0.8
+Comparison: ib vs gb
+ib_vs_gb: p=0.999994 (N)
+gb_vs_ib: p=0.000006 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d30, Accuracy: 0.9
+Comparison: ps vs gb
+ps_vs_gb: p=0.999974 (N)
+gb_vs_ps: p=0.000029 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d30, Accuracy: 0.9
+Comparison: ps vs ib
+ps_vs_ib: p=0.000507 (+)
+
+Function: f8, Dimension: d30, Accuracy: 0.9
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f8, Dimension: d30, Accuracy: 1.0
+Comparison: ps vs gb
+ps_vs_gb: p=0.030983 (+)
+
+Function: f8, Dimension: d30, Accuracy: 1.0
+Comparison: ps vs ib
+ps_vs_ib: p=0.000000 (+)
+
+Function: f8, Dimension: d30, Accuracy: 1.0
+Comparison: ib vs gb
+ib_vs_gb: p=0.999996 (N)
+gb_vs_ib: p=0.000004 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d10, Accuracy: 0.5
+Comparison: ps vs gb
+ps_vs_gb: p=0.000000 (+)
+
+Function: f13, Dimension: d10, Accuracy: 0.5
+Comparison: ps vs ib
+ps_vs_ib: p=0.999994 (N)
+ib_vs_ps: p=0.000007 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d10, Accuracy: 0.5
+Comparison: ib vs gb
+ib_vs_gb: p=0.000000 (+)
+
+Function: f13, Dimension: d10, Accuracy: 0.6
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d10, Accuracy: 0.6
+Comparison: ps vs ib
+ps_vs_ib: p=0.981426 (N)
+ib_vs_ps: p=0.019840 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d10, Accuracy: 0.6
+Comparison: ib vs gb
+ib_vs_gb: p=0.999998 (N)
+gb_vs_ib: p=0.000002 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d10, Accuracy: 0.7
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d10, Accuracy: 0.7
+Comparison: ps vs ib
+ps_vs_ib: p=0.611927 (N)
+ib_vs_ps: p=0.398487 (N)
+
+Function: f13, Dimension: d10, Accuracy: 0.7
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d10, Accuracy: 0.8
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d10, Accuracy: 0.8
+Comparison: ps vs ib
+ps_vs_ib: p=0.009955 (+)
+
+Function: f13, Dimension: d10, Accuracy: 0.8
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d10, Accuracy: 0.9
+Comparison: ps vs gb
+ps_vs_gb: p=0.999986 (N)
+gb_vs_ps: p=0.000016 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d10, Accuracy: 0.9
+Comparison: ps vs ib
+ps_vs_ib: p=0.000969 (+)
+
+Function: f13, Dimension: d10, Accuracy: 0.9
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d10, Accuracy: 1.0
+Comparison: ps vs gb
+ps_vs_gb: p=0.999925 (N)
+gb_vs_ps: p=0.000083 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d10, Accuracy: 1.0
+Comparison: ps vs ib
+ps_vs_ib: p=0.000002 (+)
+
+Function: f13, Dimension: d10, Accuracy: 1.0
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d30, Accuracy: 0.5
+Comparison: ps vs gb
+ps_vs_gb: p=0.000000 (+)
+
+Function: f13, Dimension: d30, Accuracy: 0.5
+Comparison: ps vs ib
+ps_vs_ib: p=1.000000 (N)
+ib_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d30, Accuracy: 0.5
+Comparison: ib vs gb
+ib_vs_gb: p=0.000000 (+)
+
+Function: f13, Dimension: d30, Accuracy: 0.6
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d30, Accuracy: 0.6
+Comparison: ps vs ib
+ps_vs_ib: p=1.000000 (N)
+ib_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d30, Accuracy: 0.6
+Comparison: ib vs gb
+ib_vs_gb: p=0.999979 (N)
+gb_vs_ib: p=0.000023 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d30, Accuracy: 0.7
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d30, Accuracy: 0.7
+Comparison: ps vs ib
+ps_vs_ib: p=0.999900 (N)
+ib_vs_ps: p=0.000111 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d30, Accuracy: 0.7
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d30, Accuracy: 0.8
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d30, Accuracy: 0.8
+Comparison: ps vs ib
+ps_vs_ib: p=0.478427 (N)
+ib_vs_ps: p=0.532340 (N)
+
+Function: f13, Dimension: d30, Accuracy: 0.8
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d30, Accuracy: 0.9
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d30, Accuracy: 0.9
+Comparison: ps vs ib
+ps_vs_ib: p=0.001819 (+)
+
+Function: f13, Dimension: d30, Accuracy: 0.9
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d30, Accuracy: 1.0
+Comparison: ps vs gb
+ps_vs_gb: p=0.999071 (N)
+gb_vs_ps: p=0.001018 (+)
+Using flipped result from reverse comparison
+
+Function: f13, Dimension: d30, Accuracy: 1.0
+Comparison: ps vs ib
+ps_vs_ib: p=0.000000 (+)
+
+Function: f13, Dimension: d30, Accuracy: 1.0
+Comparison: ib vs gb
+ib_vs_gb: p=1.000000 (N)
+gb_vs_ib: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d10, Accuracy: 0.5
+Comparison: ps vs gb
+ps_vs_gb: p=0.000001 (+)
+
+Function: f15, Dimension: d10, Accuracy: 0.5
+Comparison: ps vs ib
+ps_vs_ib: p=0.963977 (N)
+ib_vs_ps: p=0.038215 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d10, Accuracy: 0.5
+Comparison: ib vs gb
+ib_vs_gb: p=0.000000 (+)
+
+Function: f15, Dimension: d10, Accuracy: 0.6
+Comparison: ps vs gb
+ps_vs_gb: p=0.994709 (N)
+gb_vs_ps: p=0.005716 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d10, Accuracy: 0.6
+Comparison: ps vs ib
+ps_vs_ib: p=0.863357 (N)
+ib_vs_ps: p=0.142652 (N)
+
+Function: f15, Dimension: d10, Accuracy: 0.6
+Comparison: ib vs gb
+ib_vs_gb: p=0.961785 (N)
+gb_vs_ib: p=0.040516 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d10, Accuracy: 0.7
+Comparison: ps vs gb
+ps_vs_gb: p=0.999025 (N)
+gb_vs_ps: p=0.001068 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d10, Accuracy: 0.7
+Comparison: ps vs ib
+ps_vs_ib: p=0.419612 (N)
+ib_vs_ps: p=0.590929 (N)
+
+Function: f15, Dimension: d10, Accuracy: 0.7
+Comparison: ib vs gb
+ib_vs_gb: p=0.999945 (N)
+gb_vs_ib: p=0.000061 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d10, Accuracy: 0.8
+Comparison: ps vs gb
+ps_vs_gb: p=0.999327 (N)
+gb_vs_ps: p=0.000739 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d10, Accuracy: 0.8
+Comparison: ps vs ib
+ps_vs_ib: p=0.022653 (+)
+
+Function: f15, Dimension: d10, Accuracy: 0.8
+Comparison: ib vs gb
+ib_vs_gb: p=0.999989 (N)
+gb_vs_ib: p=0.000013 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d10, Accuracy: 0.9
+Comparison: ps vs gb
+ps_vs_gb: p=0.787580 (N)
+gb_vs_ps: p=0.220354 (N)
+
+Function: f15, Dimension: d10, Accuracy: 0.9
+Comparison: ps vs ib
+ps_vs_ib: p=0.000325 (+)
+
+Function: f15, Dimension: d10, Accuracy: 0.9
+Comparison: ib vs gb
+ib_vs_gb: p=0.999974 (N)
+gb_vs_ib: p=0.000029 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d10, Accuracy: 1.0
+Comparison: ps vs gb
+ps_vs_gb: p=0.000072 (+)
+
+Function: f15, Dimension: d10, Accuracy: 1.0
+Comparison: ps vs ib
+ps_vs_ib: p=0.000003 (+)
+
+Function: f15, Dimension: d10, Accuracy: 1.0
+Comparison: ib vs gb
+ib_vs_gb: p=0.999759 (N)
+gb_vs_ib: p=0.000267 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d30, Accuracy: 0.5
+Comparison: ps vs gb
+ps_vs_gb: p=0.000000 (+)
+
+Function: f15, Dimension: d30, Accuracy: 0.5
+Comparison: ps vs ib
+ps_vs_ib: p=1.000000 (N)
+ib_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d30, Accuracy: 0.5
+Comparison: ib vs gb
+ib_vs_gb: p=0.000000 (+)
+
+Function: f15, Dimension: d30, Accuracy: 0.6
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d30, Accuracy: 0.6
+Comparison: ps vs ib
+ps_vs_ib: p=1.000000 (N)
+ib_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d30, Accuracy: 0.6
+Comparison: ib vs gb
+ib_vs_gb: p=0.895784 (N)
+gb_vs_ib: p=0.109192 (N)
+
+Function: f15, Dimension: d30, Accuracy: 0.7
+Comparison: ps vs gb
+ps_vs_gb: p=1.000000 (N)
+gb_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d30, Accuracy: 0.7
+Comparison: ps vs ib
+ps_vs_ib: p=1.000000 (N)
+ib_vs_ps: p=0.000000 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d30, Accuracy: 0.7
+Comparison: ib vs gb
+ib_vs_gb: p=0.999993 (N)
+gb_vs_ib: p=0.000008 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d30, Accuracy: 0.8
+Comparison: ps vs gb
+ps_vs_gb: p=0.999999 (N)
+gb_vs_ps: p=0.000001 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d30, Accuracy: 0.8
+Comparison: ps vs ib
+ps_vs_ib: p=0.987624 (N)
+ib_vs_ps: p=0.013270 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d30, Accuracy: 0.8
+Comparison: ib vs gb
+ib_vs_gb: p=0.999023 (N)
+gb_vs_ib: p=0.001070 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d30, Accuracy: 0.9
+Comparison: ps vs gb
+ps_vs_gb: p=0.754833 (N)
+gb_vs_ps: p=0.253753 (N)
+
+Function: f15, Dimension: d30, Accuracy: 0.9
+Comparison: ps vs ib
+ps_vs_ib: p=0.000891 (+)
+
+Function: f15, Dimension: d30, Accuracy: 0.9
+Comparison: ib vs gb
+ib_vs_gb: p=0.999745 (N)
+gb_vs_ib: p=0.000281 (+)
+Using flipped result from reverse comparison
+
+Function: f15, Dimension: d30, Accuracy: 1.0
+Comparison: ps vs gb
+ps_vs_gb: p=0.000000 (+)
+
+Function: f15, Dimension: d30, Accuracy: 1.0
+Comparison: ps vs ib
+ps_vs_ib: p=0.000000 (+)
+
+Function: f15, Dimension: d30, Accuracy: 1.0
+Comparison: ib vs gb
+ib_vs_gb: p=0.999993 (N)
+gb_vs_ib: p=0.000008 (+)
+Using flipped result from reverse comparison
