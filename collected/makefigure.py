@@ -100,7 +100,7 @@ def plot_and_save_graph(file_path, use_log_scale, add_inset):
     if use_log_scale:
         ax.set_yscale('log')
     # ax.legend(fontsize = 14) #凡例はでふぉるとの位置に表示
-    ax.legend(fontsize=14, loc='center left', bbox_to_anchor=(1, 0.5))#凡例の位置を調整
+    ax.legend(fontsize=14, loc='best', bbox_to_anchor=(1, 0.5), frameon=True)#凡例の位置を調整
 
     # Adding an inset for the last 500 evaluations if specified
     if add_inset:

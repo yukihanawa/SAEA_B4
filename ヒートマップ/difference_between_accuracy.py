@@ -37,7 +37,7 @@ def create_heatmap(data, func, dim, output_filename):
         'linewidths': 0.35,
         'linecolor': 'white',
         'square': True,
-        'cmap': 'coolwarm',
+        'cmap': 'Set1_r',
         'vmin': 0,
         'vmax': 1,
         'center': 0.5,
@@ -55,8 +55,8 @@ def create_heatmap(data, func, dim, output_filename):
     # 軸ラベルとタイトルの設定
     ax.set_xticklabels(labels, rotation=45, size=18)
     ax.set_yticklabels(labels, rotation=0, size=18)
-    ax.set_xlabel("Group1")
-    ax.set_ylabel("Group2")
+    ax.set_xlabel("Group1",size=18)
+    ax.set_ylabel("Group2",size=18)
     # ax.set_title(f"Significance Heatmap for {func} ({dim})")
     
     # グラフの保存
@@ -79,8 +79,8 @@ def generate_all_heatmaps(data_file):
             processed_data = prepare_data(df, func, dim)
             
             # ヒートマップの作成と保存
-            output_filename = f"heatmap_gbafs_{func}_{dim}.pdf"
+            output_filename = f"ヒートマップ/heatmap_pssvc_{func}_{dim}.pdf"
             create_heatmap(processed_data, func, dim, output_filename)
 
 # 実行
-generate_all_heatmaps('combined_gbafs_results.csv')
+generate_all_heatmaps('combined_pssvc_results.csv')

@@ -1,7 +1,7 @@
 import fitz  # PyMuPDF
 
 # PDFファイルを開く
-pdf_path = "heatmap_gbafs_f8_d10.pdf"
+pdf_path = "ib_vs_gb_heatmap.pdf"
 doc = fitz.open(pdf_path)
 
 # 各ページのbboxを確認
