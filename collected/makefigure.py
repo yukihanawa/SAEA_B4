@@ -96,7 +96,7 @@ def plot_and_save_graph(file_path, use_log_scale, add_inset):
 
     ax.set_xticks(range(0, data.iloc[:, 0].max() + 1, 200))
     ax.set_xlabel('Evaluation Count',fontsize=24)
-    ax.set_ylabel('Difference from Optimal value' + (' (log scale)' if use_log_scale else ''), fontsize=24)
+    ax.set_ylabel(r"$f-f^*$" + (' (log)' if use_log_scale else ''), fontsize=24)
     if use_log_scale:
         ax.set_yscale('log')
     # ax.legend(fontsize = 14) #凡例はでふぉるとの位置に表示
